@@ -1,0 +1,195 @@
+{
+  "pages": [
+
+    {
+      "path": "pages/login/index",
+      "config": {
+        "navigationBarTitleText": "水豚科技管理端"
+      }
+    },
+    {
+      "path": "pages/index",
+      "config": {
+        "navigationBarTitleText": "水豚科技管理端"
+      }
+    },
+    {
+      "path": "pages/all-functions/index",
+      "config": {
+        "navigationBarTitleText": "全部功能"
+      }
+    },
+    {
+      "path": "pages/my-store/index",
+      "config": {
+        "navigationBarTitleText": "我的门店"
+      }
+    },
+    {
+      "path": "pages/my-store/add-stores",
+      "config": {
+        "navigationBarTitleText": "添加门店"
+      }
+    },
+    {
+      "path": "pages/my-store/stores-info",
+      "config": {
+        "navigationBarTitleText": "门店信息"
+      }
+    },
+    {
+      "path": "pages/my-store/lifeguard-list",
+      "config": {
+        "navigationBarTitleText": "选择救生员负责人"
+      }
+    },
+    {
+      "path": "pages/my-store/add-pool",
+      "config": {
+        "navigationBarTitleText": "添加泳池"
+      }
+    },
+    {
+      "path": "pages/my-store/pool-info",
+      "config": {
+        "navigationBarTitleText": "添加泳池"
+      }
+    },
+    {
+      "path": "pages/alarm-record/index",
+      "config": {
+        "navigationBarTitleText": "警报记录"
+      }
+    },
+    {
+      "path": "pages/water-information/index",
+      "config": {
+        "navigationBarTitleText": "水质信息"
+      }
+    },
+    {
+      "path": "pages/water-information/water-quality",
+      "config": {
+        "navigationBarTitleText": "水质自检记录"
+      }
+    },
+    {
+      "path": "pages/water-information/historical-water",
+      "config": {
+        "navigationBarTitleText": "历史水质信息"
+      }
+    },
+    {
+      "path": "pages/water-information/report-water",
+      "config": {
+        "navigationBarTitleText": "上报水质信息"
+      }
+    },
+    {
+      "path": "pages/to-do-list/index",
+      "config": {
+        "navigationBarTitleText": "待办事项"
+      }
+    },
+    {
+      "path": "pages/to-do-list/edit-todo",
+      "config": {
+        "navigationBarTitleText": "编辑待办事项"
+      }
+    },
+    {
+      "path": "pages/to-do-list/add-todo",
+      "config": {
+        "navigationBarTitleText": "添加待办事项"
+      }
+    },
+    {
+      "path": "pages/to-do-list/history-todo",
+      "config": {
+        "navigationBarTitleText": "历史待办"
+      }
+    },
+    {
+      "path": "pages/attendance/index",
+      "config": {
+        "navigationBarTitleText": "值班考勤"
+      }
+    },
+    {
+      "path": "pages/duty-schedule/index",
+      "config": {
+        "navigationBarTitleText": "值班计划"
+      }
+    },
+    {
+      "path": "pages/duty-schedule/add-duty",
+      "config": {
+        "navigationBarTitleText": "添加值班"
+      }
+    },
+    {
+      "path": "pages/duty-schedule/select-duty",
+      "config": {
+        "navigationBarTitleText": "选择救生值班人员"
+      }
+    },
+    {
+      "path": "pages/duty-schedule/duty-info",
+      "config": {
+        "navigationBarTitleText": "值班信息"
+      }
+    },
+    {
+      "path": "pages/site-setup/index",
+      "config": {
+        "navigationBarTitleText": "场次设置"
+      }
+    },
+    {
+      "path": "pages/site-setup/new-site",
+      "config": {
+        "navigationBarTitleText": "创建新场次"
+      }
+    },
+    {
+      "path": "pages/site-setup/apply-site",
+      "config": {
+        "navigationBarTitleText": "选择适用场馆"
+      }
+    },
+    {
+      "path": "pages/site-setup/site-info",
+      "config": {
+        "navigationBarTitleText": "场次信息"
+      }
+    }
+  ],
+  "usingComponents": {
+    "van-button": "../static/vant/button/index",
+    "van-icon": "../static/vant/icon/index",
+    "van-transition": "../static/vant/transition/index",
+    "van-cell-group": "../static/vant/cell-group/index",
+    "van-cell": "../static/vant/cell/index",
+    "van-toast": "../static/vant/toast/index",
+    "van-dialog": "../static/vant/dialog/index",
+    "van-radio": "../static/vant/radio/index",
+    "van-radio-group": "../static/vant/radio-group/index",
+    "van-datetime-picker": "../static/vant/datetime-picker/index",
+    "van-tab": "../static/vant/tab/index",
+    "van-tabs": "../static/vant/tabs/index",
+    "van-notify": "../static/vant/notify/index",
+    "van-dialog": "../static/vant/dialog/index",
+    "van-tag": "../static/vant/tag/index",
+    "van-popup": "../static/vant/popup/index",
+    "van-datetime-picker": "../static/vant/datetime-picker/index",
+    "van-checkbox": "../static/vant/checkbox/index",
+    "van-checkbox-group": "../static/vant/checkbox-group/index"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "backgroundColor": "#eeeeee",
+    "navigationBarTextStyle": "black"
+  }
+}
