@@ -1,6 +1,5 @@
 {
   "pages": [
-
     {
       "path": "pages/login/index",
       "config": {
@@ -8,9 +7,15 @@
       }
     },
     {
-      "path": "pages/index",
+      "path": "pages/home/index",
       "config": {
         "navigationBarTitleText": "水豚科技管理端"
+      }
+    },
+    {
+      "path": "pages/home/home",
+      "config": {
+        "navigationBarTitleText": "门店主页"
       }
     },
     {
@@ -52,7 +57,7 @@
     {
       "path": "pages/my-store/pool-info",
       "config": {
-        "navigationBarTitleText": "添加泳池"
+        "navigationBarTitleText": "泳池信息"
       }
     },
     {
@@ -183,7 +188,8 @@
     "van-popup": "../static/vant/popup/index",
     "van-datetime-picker": "../static/vant/datetime-picker/index",
     "van-checkbox": "../static/vant/checkbox/index",
-    "van-checkbox-group": "../static/vant/checkbox-group/index"
+    "van-checkbox-group": "../static/vant/checkbox-group/index",
+    "van-swipe-cell": "../static/vant/swipe-cell/index"
   },
   "window": {
     "backgroundTextStyle": "light",

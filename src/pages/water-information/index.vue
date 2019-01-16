@@ -5,8 +5,8 @@
                       @clickRadio="radioCall"
                       :noTime="false"></mpDownSelect>
       </div>
-      <div class="alarm-container">
-        <van-cell class="cellList" @click="cellList('1')" custom-class="cellList" v-for="(item, index) in 3" :key="index">
+      <div v-if="cardData.length!==0" class="alarm-container">
+        <van-cell class="cellList" @click="cellList('1')" custom-class="cellList" v-for="(item, index) in cardData" :key="index">
           <view slot="title" class="left-alarm">
             <view class="van-cell-text">杭州游泳馆·默认泳池</view>
             <view class="alarm-time">最近上报时间：2018-12-15 12:12:28</view>
@@ -21,6 +21,14 @@
           </view>
         </van-cell>
       </div>
+      <div v-if="cardData.length===0" class="noCard">
+        <div class="mainCenter">
+          <image class="noBG"></image>
+          <div class="noalarm">
+            暂无报警记录
+          </div>
+        </div>
+      </div>
       <div class="bottomWrap">
         <van-radio-group :value="thatRadio" @change="onChange">
           <van-radio class="rowS" name="55555">今日未上报</van-radio>
@@ -31,14 +39,24 @@
         <div class="dialogCon">
           <div class="dialog-title">杭州游泳馆·默认泳池</div>
           <div class="dialog-main">
-            <cardWater></cardWater>
+            <!--<cardWater></cardWater>-->
+            <ul class="mini_card">
+              <li class="list_mini"
+                  :key="index"
+                  v-for="(item, index) in 3">
+              <div class="ti">
+                <image class="ti_icon"></image>
+                水温
+              </div>
+              <div class="ti_info">偏高</div>
+              <div class="number">27.8<span class="du">℃</span></div>
+              <div class="bz_info">标准：22-26℃</div>
+            </li>
+            </ul>
             <div class="upTiem">上报时间：2018-12-18 09:21:21</div>
           </div>
           <div class="dialog-foolter">
-            <van-button  @click="closeDialog"
-                         size="normal"
-                         block
-                         custom-class="closeBtn">关闭</van-button>
+            <van-icon @click="closeDialog" name="cross" />
           </div>
         </div>
       </div>
@@ -58,6 +76,7 @@
     },
     data () {
       return {
+        cardData: [1, 2, 3, 4, 5, 6],
         infoDialog: false,
         thatRadio: ''
       }
@@ -96,6 +115,9 @@
 </script>
 
 <style lang="scss" scoped>
+  .water-information{
+    margin: 123rpx 0rpx;
+  }
   .fiexdTop{
     position: fixed;
     top:0;
@@ -103,8 +125,7 @@
     z-index: 2;
   }
   .alarm-container{
-    margin-top:36px;
-    margin-bottom: 72px;
+    margin:0 30rpx;
     .noInfo{
       position: absolute;
       right:-35px;
@@ -119,15 +140,24 @@
       transform: rotate3d(0,0,1,45deg);
     }
     .right-btn{
-      display: flex;
+      /*display: flex;
       height: 100%;
       flex-direction: column;
-      justify-content: center;
+      justify-content: center;*/
 
     }
     .left-alarm{
       width:220px;
-      font-size: 13px;
+      font-size: 30rpx;
+      .van-cell-text{
+        color:#333;
+      }
+      .alarm-time{
+        width:490rpx;
+        font-size: 28rpx;
+        color:#999
+      }
+
     }
     .month ,.address, .alarm-time{
       color:#969696
@@ -137,14 +167,34 @@
   .bottomWrap{
     position: fixed;
     bottom:0px;
+    height:90rpx;
     width:100%;
     background: #fff;
-    padding:20px 0 30px 0;
     text-align: left;
-    border-top:.5px solid #999;
-
+    display: flex;
+    justify-content: left;
   }
-
+  .noCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .mainCenter{
+      .noBG{
+        display: block;
+        width: 300rpx;
+        height:300rpx;
+        background: gray;
+        margin-top:290rpx;
+      }
+      .noalarm{
+        display: block;
+        text-align: center;
+        margin-top:20rpx;
+        color:#999;
+        font-size: 24rpx;
+      }
+    }
+  }
   /*弹窗*/
   .dialogBg{
     position: fixed;
@@ -153,53 +203,108 @@
     left:0;
     width:100%;
     height:100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: rgba(0,0,0,.3);
     .dialogCon{
-      width:80%;
-      min-height: 320px;
+      position: absolute;
+      bottom:0;
+      width:100%;
+      height: 532rpx;
       border-radius: 10px;
       background: #ffff;
-      display: flex;
-      flex-direction: column;
     }
     .dialog-title{
       width:100%;
       height:60px;
       line-height: 60px;
       text-align: center;
-      /*border-bottom: .5px solid rgba(0,0,0,.1);*/
-      font-size: 14px;
-      font-weight: bold;
+      border-bottom: .5px solid #EEE;
+      font-size: 36rpx;
+      color:#333;
+      font-weight: 400;
     }
     .dialog-main{
       flex:1;
       min-height:190px;
       font-size: 12px;
+      .mini_card{
+        padding: 40rpx 30rpx;
+      }
+      .list_mini{
+        width:216rpx;
+        height:240rpx;
+        margin-right: 14rpx;
+        background: #FEBC57;
+        display: inline-block;
+        color:#fff;
+        padding:21rpx;
+        border-radius: 12rpx;
+        .ti_icon{
+          width:12rpx;
+          height:24rpx;
+          display: inline-block;
+          vertical-align: middle;
+          margin-bottom: 28rpx;
+        }
+        .ti{
+          vertical-align: middle;
+          font-size: 24rpx;
+        }
+        .ti_info{
+          width:60rpx;
+          height:30rpx;
+          line-height: 30rpx;
+          text-align: center;
+          background: #fff;
+          color: #FFAC2B;
+          font-size: 20rpx;
+          margin-bottom: 4rpx;
+
+        }
+        .number{
+          font-size: 60rpx;
+          margin-bottom: 1rpx;
+        }
+        .du{
+          font-size:30rpx;
+        }
+        .bz_info{
+          font-size:24rpx;
+        }
+      }
+      .list_mini:nth-last-child(1){
+        magrin-right:0 !important;
+      }
     }
     .upTiem{
       text-align: center;
-      color:rgba(0,0,0,.3);
+      color:#666;
+      font-size: 28rpx;
       padding: 10px 0 20px;
     }
 
     .dialog-foolter{
-      flex:1;
+      position: absolute;
+      right:32rpx;
+      top:32rpx;
     }
   }
 </style>
 <style lang="scss">
+  page{
+    background: #F4F6F6;
+  }
   .right-btn{
     .alarmBtn{
-      background: black;
-      color:#fff;
+      background: #fff;
+      color:#EF7C1B;
+      border:0;
     }
   }
   .cellList{
     position: relative;
     overflow: hidden;
+    border-radius: 20rpx;
+    margin-bottom: 32rpx;
   }
   .rowS{
     text-align: left;

@@ -1,39 +1,46 @@
 <template>
     <div class="edit-todo">
-      <mpCell required
+      <mpCell inline
               leftTitle="待办事项"
               v-model="nameTodo"
               :iconNone="false"
               placeholder="输入待办事项"
               type="input"></mpCell>
-      <mpCell required
+      <mpCell inline
               leftTitle="开始时间"
               placeholder="请选择"
               v-model="startDate"
               iconName="arrow-down"
               @confirmPicker="startpickerData"
               type="time"></mpCell>
-      <mpCell required
+      <mpCell inline
               leftTitle="结束时间"
               placeholder="请选择"
               v-model="endDate"
               iconName="arrow-down"
               @confirmPicker="endpickerData"
               type="time"></mpCell>
+      <mpSmallTitle title="选填" :rightNone="false"></mpSmallTitle>
+
+      <div class="markWrap">
+        <remarkText @areaVal="areaVal" max="100"></remarkText>
+      </div>
+
       <fixedBtn leftBtn
                 name="保存"
                 @leftclick="deleteBtn"
                 @click="addBtn"></fixedBtn>
-      <div class="markWrap">
-        <remarkText @areaVal="areaVal" max="100"></remarkText>
+      <div id="red">
+        <van-dialog id="van-dialog" />
       </div>
-      <van-dialog id="van-dialog" />
+
       <van-toast id="van-toast" />
     </div>
 </template>
 
 <script>
   import mpCell from '@/components/mpCell'
+  import mpSmallTitle from '@/components/mpSmallTitle'
   import remarkText from '@/components/remarks-textarea'
   import fixedBtn from '@/components/fixed-btn'
   import Dialog from '@/../static/vant/dialog/dialog'
@@ -43,6 +50,7 @@
     name: 'edit-todo',
     components: {
       mpCell,
+      mpSmallTitle,
       remarkText,
       fixedBtn
     },
@@ -79,7 +87,7 @@
       },
       addBtn () {
         Toast('保存成功')
-        this.$router.push({
+        this.$router.replace({
           path: 'index'
         })
       }
@@ -89,7 +97,11 @@
 
 <style lang="scss" scoped>
 .markWrap{
-  /*margin-top:20px;*/
-  border-top: 20px solid rgba(0,0,0,.1)
+  background: #fff;
 }
+</style>
+<style lang="scss">
+  page{
+    background: #F4F6F6;
+  }
 </style>

@@ -40,7 +40,10 @@
                 @click="addDuty"
                 leftname="复制本月值班"></fixedBtn>
 
-      <van-dialog id="van-dialog" />
+
+      <div id="theme">
+        <van-dialog id="van-dialog" />
+      </div>
     </div>
 </template>
 

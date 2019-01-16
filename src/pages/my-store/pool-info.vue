@@ -3,19 +3,21 @@
     <mpCell required
             leftTitle="泳池名称"
             type="input"
+            inline
             v-model.lazy="poolName"
             placeholder="输入泳池名称"
             :iconNone="false"></mpCell>
     <mpCell required
             leftTitle="设备ID"
             type="input"
+            inline
             v-model.lazy="poolID"
             placeholder="输入设备组ID"
             :iconNone="false"></mpCell>
     <div class="mark">
+      <view class="van-cell-text">备注</view>
       <van-cell>
         <view slot="title">
-          <view class="van-cell-text">备注</view>
           <textarea class="hinIpt"
                     v-model.lazy="remarks"
                     maxlength="50"
@@ -26,9 +28,11 @@
         </view>
       </van-cell>
     </div>
+    <div id="theme">
+      <van-dialog id="van-dialog" />
+    </div>
     <van-notify id="custom-selector" />
     <van-toast id="van-toast" />
-    <van-dialog id="van-dialog" />
     <fxiedBtn name="保存" @click="savePool"></fxiedBtn>
   </div>
 </template>
@@ -98,12 +102,17 @@
 <style lang="scss" scoped>
   .mark{
     margin-top: 10px;
+    .van-cell-text{
+      font-size: 28rpx;
+      padding: 32rpx 0 24rpx 30rpx;
+      color:#999;
+    }
   }
   .hinIpt{
     width:100%;
     box-sizing: border-box;
     padding: 6px;
-    border: 0.3px solid #999;
+    /*border: 0.3px solid #999;*/
     height:140px;
     line-height: 0;
   }
@@ -111,5 +120,10 @@
     display: inline-block;
     width:100%;
     text-align: right;
+  }
+</style>
+<style lang="scss">
+  page{
+    background: #F4F6F6;
   }
 </style>

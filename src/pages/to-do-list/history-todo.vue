@@ -2,21 +2,21 @@
     <div class="history-todo">
       <van-tabs :active="active" @change="onChange">
         <van-tab :title="tabOne">
-          <mpCell leftTitle="巡店检查"
-                  placeholder="去杭州游泳馆巡查"
-                  :iconNone="false"
-                  @click="goEdit_todo"
-                  type="input"></mpCell>
+          <van-cell>
+            <view slot="title">
+              <view class="van-cell-text">
+                <div class="sysType">系统</div>巡店检查
+              </view>
+              <view class="smalltext">每日上报水质信息</view>
+            </view>
+          </van-cell>
         </van-tab>
         <van-tab :title="tabTwo">
-          <mpCell leftTitle="巡店检查"
+          <!--<mpCell leftTitle="巡店检查"
                   placeholder="去杭州游泳馆巡查"
                   :iconNone="false"
-                  type="input"></mpCell>
+                  type="input"></mpCell>-->
         </van-tab>
-        <van-tab disabled title=" "></van-tab>
-        <van-tab disabled title=" "></van-tab>
-        <van-tab disabled title=" "></van-tab>
       </van-tabs>
     </div>
 </template>
@@ -48,5 +48,21 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .van-cell-text{
+    font-size: 30rpx;
+    color:#333;
+    vertical-align: middle;
+  }
+  .sysType{
+    width:60rpx;
+    height:30rpx;
+    line-height: 30rpx;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    color:#fff;
+    font-size: 20rpx;
+    margin-right: 8rpx;
+    background: linear-gradient(to right, #F8B33A, #EF7C1B);
+  }
 </style>

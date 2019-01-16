@@ -1,30 +1,50 @@
 <template>
     <div class="Alarm-Record">
       <div class="fiexdTop">
-        <mpDownSelect title="全部门店"
+        <mpDownSelect :title="allPool"
                       @clickRadio="radioCall"
                       @changeTime="changeTime"
                       type="time" ></mpDownSelect>
       </div>
-      <div class="alarm-container">
-        <van-cell class="cellList" custom-class="cellList" v-for="(item, index) in 3" :key="index">
-          <view class="noInfo">未接警</view>
-
-          <view slot="title" class="left-alarm">
-            <view class="van-cell-text">杭州游泳馆·默认泳池</view>
-            <view class="month">五月</view>
-            <view class="address">警报位置: 1号从网关</view>
-            <view class="alarm-time">警报时间：2018-12-15 12:12:28</view>
-          </view>
-          <view slot="right-icon">
-            <div class="right-btn">
-              <van-button  @click="showDialog"
-                           size="mini"
-                           round
-                           custom-class="alarmBtn">接警情况</van-button>
+      <div  class="alarm-container">
+        <div v-if="cardData.length!==0"
+             class="cardList"
+             custom-class="cellList" v-for="(item, index) in cardData"
+             :key="index">
+          <van-cell class="cellList">
+            <view class="noInfo">
+              <div class="no_call">
+                <image class="iconImg"></image>未接警
+              </div>
+              <div class="detail_info"  @click.stop="showDialog">
+                <image class="iconImg"></image>接警情况
+              </div>
+            </view>
+            <view slot="title" class="left-alarm">
+              <view class="van-cell-text">杭州游泳馆·默认泳池</view>
+              <view class="month">
+                <image class="iconImg"></image>
+                五月
+              </view>
+              <view class="address">
+                <image class="iconImg"></image>
+                警报位置: 1号从网关
+              </view>
+              <view class="alarm-time">
+                <image class="iconImg"></image>
+                警报时间：2018-12-15 12:12:28
+              </view>
+            </view>
+          </van-cell>
+        </div>
+        <div v-if="cardData.length===0" class="noCard">
+          <div class="mainCenter">
+            <image class="noBG"></image>
+            <div class="noalarm">
+              暂无报警记录
             </div>
-          </view>
-        </van-cell>
+          </div>
+        </div>
       </div>
       <div class="bottomWrap">
         <van-radio-group :value="AlarmRadio" @change="onChange">
@@ -53,10 +73,8 @@
             </ul>
           </div>
           <div class="dialog-foolter">
-            <van-button  @click="closeDialog"
-                         size="normal"
-                         block
-                         custom-class="closeBtn">关闭</van-button>
+            <div @click="closeDialog"
+                  class="closeBtn">关闭</div>
           </div>
         </div>
       </div>
@@ -73,6 +91,8 @@
     },
     data () {
       return {
+        cardData: [1, 2, 3, 4, 5],
+        allPool: '全部门店全部门店全部门店全部门店',
         AlarmRadio: '',
         infoDialog: false
       }
@@ -83,6 +103,7 @@
       /* 门店选择 */
       radioCall (obj) {
         console.log(obj)
+        this.allPool = obj.title
       },
       /* 时间选择 */
       changeTime (time) {
@@ -109,6 +130,16 @@
 </script>
 
 <style lang="scss" scoped>
+  .Alarm-Record{
+    margin: 123rpx 0 123rpx;
+  }
+  .iconImg{
+    width:20rpx;
+    height:20rpx;
+    background: red;
+    display: inline-block;
+    margin-right: 19rpx;
+  }
 .fiexdTop{
   position: fixed;
   top:0;
@@ -116,20 +147,25 @@
   z-index: 2;
 }
 .alarm-container{
-  margin-top:36px;
-  margin-bottom: 72px;
+  margin-top:92rpx;
+  margin-bottom: 90rpx;
+  .cardList{
+    width:690rpx;
+    min-height:284rpx;
+    margin: 0 auto 32rpx;
+    border-radius: 20rpx;
+  }
   .noInfo{
     position: absolute;
-    right:-35px;
-    top:-35px;
-    width:70px;
-    height:70px;
-    line-height: 126px;
-    background: #969696;
+    right:30rpx;
     text-align: center;
-    font-size: 10px;
-    color:red;
-    transform: rotate3d(0,0,1,45deg);
+    font-size: 26rpx;
+    .no_call{
+      color:#F95E5F;
+    }
+    .detail_info{
+      color:#EF7C1B
+    }
   }
   .right-btn{
     display: flex;
@@ -141,9 +177,42 @@
   .left-alarm{
     width:220px;
     font-size: 13px;
+    .van-cell-text{
+      width: 500rpx;
+      font-size: 30rpx;
+      color:#333;
+      padding-bottom: 16rpx;
+    }
   }
-  .month ,.address, .alarm-time{
-    color:#969696
+  .month, .address, .alarm-time{
+    color:#999;
+    width: 600rpx;
+    font-size: 28rpx;
+    padding-bottom: 16rpx;
+  }
+  .alarm-time{
+    padding-bottom:0;
+  }
+  .noCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .mainCenter{
+      .noBG{
+        display: block;
+        width: 300rpx;
+        height:300rpx;
+        background: gray;
+        margin-top:290rpx;
+      }
+      .noalarm{
+        display: block;
+        text-align: center;
+        margin-top:20rpx;
+        color:#999;
+        font-size: 24rpx;
+      }
+    }
   }
 
 }
@@ -151,11 +220,11 @@
   position: fixed;
   bottom:0px;
   width:100%;
+  display:flex;
+  justify-content:left;
   background: #fff;
-  padding:20px 0 30px 0;
+  height: 90rpx;
   text-align: left;
-  border-top:.5px solid #999;
-
 }
 
   /*弹窗*/
@@ -171,35 +240,36 @@
     align-items: center;
     background: rgba(0,0,0,.3);
     .dialogCon{
-      width:80%;
-      height: 320px;
-      border-radius: 10px;
+      width:560rpx;
+      height: 432rpx;
+      border-radius: 20rpx;
       background: #ffff;
       display: flex;
       flex-direction: column;
     }
     .dialog-title{
       width:100%;
-      height:60px;
-      line-height: 60px;
+      color:#333;
+      font-size: 36rpx;
       text-align: center;
-      border-bottom: .5px solid rgba(0,0,0,.1);
-      font-size: 14px;
+      padding: 40rpx 0 24rpx;
       font-weight: bold;
     }
     .dialog-main{
       flex:1;
-      min-height:190px;
+      /*min-height:190px;*/
       font-size: 12px;
     }
     .item-ul{
-      padding: 20px;
+      padding:0 24rpx 40rpx 24rpx;
     }
     .item-li{
       margin-bottom: 10px;
     }
     .leftinfo, .rightinfo {
       display: inline-block;
+      font-size: 28rpx;
+      color:#666;
     }
     .leftinfo{
       color:rgba(0,0,0,.4);
@@ -208,10 +278,23 @@
     }
     .dialog-foolter{
       flex:1;
+      .closeBtn{
+        border-top: 1rpx solid #EEE;
+        width:100%;
+        height: 100rpx;
+        line-height: 100rpx;
+        text-align: center;
+        background: #fff;
+        font-size: 36rpx;
+        color:#EF7C1B;
+      }
     }
   }
 </style>
 <style lang="scss">
+  page{
+    background: #F4F6F6;
+  }
   .right-btn{
     .alarmBtn{
       background: black;
@@ -234,6 +317,11 @@
       color:#fff;
       margin: 0 auto;
       border-radius: 10px;
+    }
+  }
+  .cardList{
+    .van-cell{
+      padding: 32rpx 30rpx;
     }
   }
 </style>

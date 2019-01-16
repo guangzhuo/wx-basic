@@ -7,7 +7,9 @@
                 v-for="(item, index) in 3" :key="index">
         <view slot="title" class="left-alarm">
           <view class="van-cell-text">杭州游泳馆·默认泳池</view>
-          <view class="alarm-time">最近上报时间：2018-12-15 12:12:28</view>
+          <view class="alarm-time">
+            <image class="icon_time"></image>
+            最近上报时间：2018-12-15 12:12:28</view>
         </view>
         <view slot="right-icon">
           <div class="right-btn">
@@ -61,19 +63,39 @@
 
 <style lang="scss" scoped>
   .water-quality{
-    margin-bottom: 72px;
+    margin-bottom: 138rpx;
   }
   .left-alarm{
     width:220px;
     font-size: 13px;
+    .van-cell-text{
+      font-size: 30rpx;
+      color:#333;
+    }
   }
   .month ,.address, .alarm-time{
     color:#969696
+  }
+  .alarm-time{
+    width:520rpx;
+    color:#999;
+    font-size: 28rpx;
+    margin-top: 8rpx;
+  }
+  .icon_time{
+    width: 23rpx;
+    height:23rpx;
+    display: inline-block;
   }
   .right-btn{
     display: flex;
     height: 100%;
     flex-direction: column;
     justify-content: center;
+  }
+</style>
+<style lang="scss">
+  page{
+    background: #F4F6F6;
   }
 </style>

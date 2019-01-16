@@ -1,55 +1,30 @@
 <template>
   <div class="report-water">
     <mpSmallTitle title="杭州游泳馆·默认泳池" :rightNone="false"></mpSmallTitle>
-
-    <div class="mainBlock">
-      <mpCell required
-              leftTitle="水温 (℃)"
-              :iconNone="false"
-              placeholder="输入水温"
-              v-model="waterTemp"
-              type="input">
-      </mpCell>
-      <mpCell required
-              leftTitle="pH值"
-              :iconNone="false"
-              placeholder="输入pH值"
-              v-model="PH"
-              type="input">
-      </mpCell>
-      <mpCell required
-              leftTitle="日平均换水率 (%)"
-              :iconNone="false"
-              placeholder="输入日平均换水率"
-              v-model="orderBL"
-              type="input">
-      </mpCell>
-    </div>
-
-    <div class="mainBlock">
-      <mpCell
-              leftTitle="余氯 (mg/L)"
-              :iconNone="false"
-              placeholder="输入余氯"
-              v-model="YL_Val"
-              type="input">
-      </mpCell>
-      <mpCell
-              leftTitle="总氯 (mg/L)"
-              :iconNone="false"
-              placeholder="输入总氯"
-              v-model="all_zl"
-              type="input">
-      </mpCell>
-      <mpCell
-              leftTitle="水表读数 (m³)"
-              :iconNone="false"
-              placeholder="输入水量"
-              v-model="water_DS"
-              type="input">
-      </mpCell>
-    </div>
-
+    <mpCell required
+            leftTitle="水温 (℃)"
+            :iconNone="false"
+            inline
+            placeholder="输入水温"
+            v-model="waterTemp"
+            type="input">
+    </mpCell>
+    <mpCell required
+            leftTitle="pH值"
+            :iconNone="false"
+            inline
+            placeholder="输入pH值"
+            v-model="PH"
+            type="input">
+    </mpCell>
+    <mpCell required
+            leftTitle="日平均换水率 (%)"
+            :iconNone="false"
+            inline
+            placeholder="输入日平均换水率"
+            v-model="orderBL"
+            type="input">
+    </mpCell>
     <div class="mainBlock">
       <van-cell required :border="false">
         <view slot="title">
@@ -57,11 +32,15 @@
         </view>
       </van-cell>
       <div class="listImg">
-        <img v-if="imagesArr.length>0"
+        <div class="images"
              v-for="(item, idnex) in imagesArr"
              :key="index"
-             class="images"
-             :src="item.path">
+              v-if="imagesArr.length>0">
+          <image class="thatImg" :src="item.path"></image>
+          <div class="closeImg" @click="closeImg(item)">
+            <van-icon name="close" />
+          </div>
+        </div>
         <div class="inlineBlcok">
           <div class="uploadWrap" @click="clickUpload">
             <van-icon name="plus" />
@@ -74,8 +53,33 @@
           style="width: 100%; height: 300px;"
           binderror="error"></camera>-->
       </div>
-
     </div>
+    <mpSmallTitle title="选填" :rightNone="false"></mpSmallTitle>
+    <mpCell
+        leftTitle="余氯 (mg/L)"
+        :iconNone="false"
+        inline
+        placeholder="输入余氯"
+        v-model="YL_Val"
+        type="input">
+    </mpCell>
+    <mpCell
+        leftTitle="总氯 (mg/L)"
+        :iconNone="false"
+        inline
+        placeholder="输入总氯"
+        v-model="all_zl"
+        type="input">
+    </mpCell>
+    <mpCell
+        leftTitle="水表读数 (m³)"
+        :iconNone="false"
+        inline
+        placeholder="输入水量"
+        v-model="water_DS"
+        type="input">
+    </mpCell>
+
     <fixedBtn name="立即上报" @click="nowUpimg"></fixedBtn>
     <van-notify id="custom-selector" />
     <van-toast id="van-toast" />
@@ -127,13 +131,14 @@
       /* 拍照上传 */
       clickUpload () {
         let that = this
-        if (this.imagesArr.length > 6) {
+        if (this.imagesArr.length > 5) {
           Notify({
             text: '最多6张图片',
             duration: 3000,
             selector: '#custom-selector',
             backgroundColor: '#1989fa'
           })
+          return false
         }
         wx.chooseImage({
           count: 1,
@@ -155,6 +160,12 @@
             console.log(that.imagesArr)
           }
         })
+      },
+      /* 删除图片 */
+      closeImg (item) {
+        console.log(item)
+        let index = this.imagesArr.findIndex(data => data.path === item.path)
+        this.imagesArr.splice(index, 1)
       },
       /* 立即上报按钮 */
       nowUpimg () {
@@ -237,7 +248,7 @@
     }
   }
   .mainBlock{
-    border-top: 3px solid rgba(0,0,0,.1)
+    border-top: 16rpx solid #F4F6F6;
   }
   .flexHin{
     display: flex;
@@ -251,11 +262,22 @@
   .listImg{
     padding: 6px 10px;
     .images{
-      width: 100px;
-      height:100px;
-      margin: 0 6px;
+      width:216rpx;
+      height:216rpx;
+      margin: 0 5px;
       display: inline-block;
       background: darkgray;
+      position: relative;
+      .thatImg{
+        position: absolute;
+        width:100%;
+        height:100%;
+      }
+      .closeImg{
+        position: absolute;
+        top:-16rpx;
+        right:-16rpx;
+      }
     }
   }
   .inlineBlcok{
@@ -263,8 +285,8 @@
     vertical-align:top;
   }
 .uploadWrap{
-  width:100px;
-  height:100px;
+  width:216rpx;
+  height:216rpx;
   border-radius: 6px;
   border: .5px solid rgba(0,0,0,.1);
   display: flex;

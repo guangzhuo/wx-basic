@@ -37,6 +37,9 @@
         this.flyData()
       }
     },
+    destroyed () {
+      this.radio = ''
+    },
     methods: {
       /* 初始 */
       flyData () {
@@ -46,13 +49,21 @@
         console.log(id)
       },
       onClick (that) {
-        let {id, title} = that.currentTarget.dataset
+        let {id, title, back} = that.currentTarget.dataset
         console.log(that)
         this.radio = id
-        this.$router.push({
-          path: 'add-stores',
-          query: that.currentTarget.dataset
-        })
+        if (back === 'add-stores') {
+          this.$router.push({
+            path: 'add-stores',
+            query: that.currentTarget.dataset
+          })
+        } else {
+          this.$router.push({
+            path: 'stores-info',
+            query: that.currentTarget.dataset
+          })
+        }
+
         /* setTimeout(() => {
 
         }, 3000) */

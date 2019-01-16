@@ -19,14 +19,17 @@ export default {
   page {
     margin:0;
     box-sizing: border-box;
-    .theme{
-      #van-dialog{
+    #theme{
+      .van-dialog__button{
         .dialog-index--van-dialog__confirm{
           color:#EF7C1B !important;
         }
       }
+      .dialog-index--van-dialog__confirm{
+        color:#EF7C1B !important;
+      }
     }
-    .red{
+    #red{
       #van-dialog{
         .dialog-index--van-dialog__confirm{
           color:#EE1E1F !important;
@@ -41,7 +44,12 @@ export default {
     .van-tab--active{
       color:#EF7C1B;
     }
-
+    .van-radio__icon--checked{
+      color:#EF7C1B !important;
+    }
+    .van-icon{
+      vertical-align: middle;
+    }
   }
 
 

@@ -32,7 +32,10 @@
               @click="save"
               name="保存"></fixedBtn>
     <van-notify id="custom-selector" />
-    <van-dialog id="van-dialog" />
+    <div id="theme">
+      <van-dialog id="van-dialog" />
+    </div>
+
   </div>
 </template>
 

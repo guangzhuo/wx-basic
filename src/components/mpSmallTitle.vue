@@ -1,5 +1,5 @@
 <template>
-  <div class="VanCell">
+  <div class="VanCell" :class="swiperInfo===true?'whiteBg':'grayBg'">
     <van-cell :border="border">
       <view slot="title">
         <div class="leftTitle">
@@ -97,5 +97,17 @@
   .right-title{
     font-size: 26rpx;
     color:#EF7C1B;
+  }
+</style>
+<style lang="scss">
+  .whiteBg{
+    .van-cell{
+      background: #fff;
+    }
+  }
+  .grayBg{
+    .van-cell{
+      background: #F4F6F6;
+    }
   }
 </style>

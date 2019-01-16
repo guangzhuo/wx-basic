@@ -1,36 +1,48 @@
 <template>
   <div class="add-todo">
-    <mpCell required
+    <mpCell
             leftTitle="待办事项"
             v-model="nameTodo"
+            inline
             :iconNone="false"
             placeholder="输入待办事项"
             type="input"></mpCell>
-    <mpCell required
+    <mpCell
             leftTitle="开始时间"
             v-model="startDate"
+            inline
             placeholder="请选择"
             iconName="arrow-down"
             @confirmPicker="startpickerData"
             type="time"></mpCell>
-    <mpCell required
+    <mpCell
             leftTitle="结束时间"
             placeholder="请选择"
             v-model="endDate"
+            inline
             iconName="arrow-down"
             @confirmPicker="endpickerData"
             type="time"></mpCell>
-    <fixedBtn name='保存' @click="save"></fixedBtn>
+    <mpSmallTitle title="选填" :rightNone="false"></mpSmallTitle>
+
     <div class="markWrap">
       <remarkText @areaVal="areaVal" max="100"></remarkText>
     </div>
-    <van-dialog id="van-dialog" />
+
+
+    <fixedBtn name='保存' @click="save"></fixedBtn>
+
+
+    <div id="theme">
+      <van-dialog id="van-dialog" />
+    </div>
     <van-toast id="van-toast" />
   </div>
 </template>
 
 <script>
   import mpCell from '@/components/mpCell'
+  import mpSmallTitle from '@/components/mpSmallTitle'
   import remarkText from '@/components/remarks-textarea'
   import fixedBtn from '@/components/fixed-btn'
   import Dialog from '@/../static/vant/dialog/dialog'
@@ -40,6 +52,7 @@
     name: 'add-todo',
     components: {
       mpCell,
+      mpSmallTitle,
       remarkText,
       fixedBtn
     },
@@ -76,8 +89,11 @@
       },
       save () {
         Toast('保存成功')
-        this.$router.push({
+        /* this.$router.push({
           path: 'index'
+        }) */
+        wx.redirectTo({
+          url: 'index'
         })
       }
     }
@@ -86,7 +102,11 @@
 
 <style lang="scss" scoped>
   .markWrap{
-    /*margin-top:20px;*/
-    border-top: 20px solid rgba(0,0,0,.1)
+    background: #fff;
+  }
+</style>
+<style lang="scss">
+  page{
+    background: #F4F6F6;
   }
 </style>

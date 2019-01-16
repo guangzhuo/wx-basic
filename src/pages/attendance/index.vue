@@ -9,23 +9,27 @@
         <van-cell>
           <view slot="title">
             <div class="leftMain">
-              <div class="le_title">阿Q · 杭州游泳馆</div>
+              <div class="le_title">
+                <images class="leftIcon"></images>阿Q
+              </div>
+              <div class="two_title">
+                <images class="leftIcon"></images>杭州游泳馆
+              </div>
               <div class="small_title">排班时间：2018-12-15 11:00</div>
               <div class="small_title">打卡时间：2018-12-15 10:12:12</div>
             </div>
           </view>
           <view slot="right-icon">
             <div class="right_Phone" @click="click_phone">
-              <div class="time_info colorGreen" v-if="true">正常</div>
-              <div class="time_info colorRed" v-else-if="true">迟到</div>
-              <div class="time_info colorRed" v-else-if="true">缺勤</div>
-              <van-icon name="phone" size="30px" />
+              <van-icon name="phone" color="#EF7C1B" size="30rpx" />
+              <image class="time_info colorGreen" v-if="true">正常</image>
+              <image class="time_info colorRed" v-else-if="true">迟到</image>
+              <image class="time_info colorRed" v-else-if="true">缺勤</image>
             </div>
           </view>
         </van-cell>
       </div>
       <fixedRadio :radioData="radioData" @RadioClick="attDraio"></fixedRadio>
-
     </div>
 </template>
 
@@ -72,17 +76,40 @@
 
 <style lang="scss" scoped>
   .leftMain{
-    .le_title{
-      font-size: 14px;
+    .le_title,.two_title{
+      font-size: 28rpx;
+      color:#333;
+      line-height: normal;
+      padding-bottom: 16rpx;
     }
+    .leftIcon{
+      width:23rpx;
+      height: 23rpx;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: darkgray;
+      margin-right: 9rpx;
+    }
+
     .small_title{
-      font-size: 12px;
-      color:rgba(0,0,0,.6)
+      font-size: 26rpx;
+      color:#999;
+      /*height: 40rpx;*/
+      line-height: normal;
+      padding-bottom: 16rpx;
     }
   }
   .right_Phone{
+    height: 100%;
+    position: relative;
     .time_info{
-      padding-bottom: 9px;
+      position: absolute;
+      bottom: -35rpx;
+      right:-46rpx;
+      width:176rpx;
+      height:176rpx;
+      background: darkgray;
     }
     .colorGreen{
       color:green;
@@ -92,4 +119,19 @@
     }
   }
 
+</style>
+<style lang="scss">
+  page{
+    background: #F4F6F6;
+  }
+  .atten{
+    margin: 32rpx 0 122rpx;
+    .van-cell{
+      width: 690rpx;
+      height: 276rpx;
+      margin: 0 auto;
+      border-radius: 20rpx;
+      overflow: hidden;
+    }
+  }
 </style>

@@ -58,6 +58,7 @@
     bottom:0px;
     left:0px;
     width:100%;
+    z-index: 10;
     background: #fff;
     text-align: center;
     box-shadow:0px 0px 10px 0px rgba(27,27,78,0.06);

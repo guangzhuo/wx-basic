@@ -2,42 +2,44 @@
     <div class="Cellmp">
       <van-cell :border="border" :required="required" @click="click_cell">
         <view slot="title">
-          <view class="van-cell-text">{{leftTitle}}</view>
-          <div class="inputWrap">
-            <image v-if="isSrcIcon" :src="srcIcon" class="iconWin"></image>
-            <input v-if="type==='input'&& typeInput ==='text'"
-                   :disabled="disabled"
-                   v-model="value"
-                   @input="inputFun"
-                   type="text"
-                   class="ipt"
-                   :placeholder="placeholder" />
-            <input v-if="type==='input'&& typeInput ==='number'"
-                   :disabled="disabled"
-                   v-model="value"
-                   @input="inputFun"
-                   type="number"
-                   class="ipt"
-                   :placeholder="placeholder" />
-            <div v-if="type==='time'">
-              <view class="picker" @click="showPopup">
-                <!--{{currentDate}}-->
-                <input v-model="value"
-                       disabled
-                       class="ipt"
-                       :placeholder="placeholder" />
-              </view>
-              <van-popup
-                :show="popupShow"
-                position="bottom"
-                @close="popupClose">
-                <van-datetime-picker
-                  :type="timeType"
-                  @cancel="cancel"
-                  @confirm="confirmPicker"/>
-              </van-popup>
+          <view :class="inline===true? 'inline': ''">
+            <view class="van-cell-text">{{leftTitle}}</view>
+            <div class="inputWrap">
+              <image v-if="isSrcIcon" :src="srcIcon" class="iconWin"></image>
+              <input v-if="type==='input'&& typeInput ==='text'"
+                     :disabled="disabled"
+                     v-model="value"
+                     @input="inputFun"
+                     type="text"
+                     class="ipt"
+                     :placeholder="placeholder" />
+              <input v-if="type==='input'&& typeInput ==='number'"
+                     :disabled="disabled"
+                     v-model="value"
+                     @input="inputFun"
+                     type="number"
+                     class="ipt"
+                     :placeholder="placeholder" />
+              <div v-if="type==='time'">
+                <view class="picker" @click="showPopup">
+                  <!--{{currentDate}}-->
+                  <input v-model="value"
+                         disabled
+                         class="ipt"
+                         :placeholder="placeholder" />
+                </view>
+                <van-popup
+                  :show="popupShow"
+                  position="bottom"
+                  @close="popupClose">
+                  <van-datetime-picker
+                    :type="timeType"
+                    @cancel="cancel"
+                    @confirm="confirmPicker"/>
+                </van-popup>
+              </div>
             </div>
-          </div>
+          </view>
         </view>
         <view slot="right-icon">
           <div class="rightEye" v-if="iconNone">
@@ -72,6 +74,10 @@
       border: {
         type: Boolean,
         default: true
+      },
+      inline: {
+        type: Boolean,
+        default: false
       },
       disabled: {
         type: Boolean,
@@ -171,7 +177,7 @@
 
 <style lang="scss" scoped>
   .van-cell-text{
-    font-size:32rpx;
+    font-size:30rpx;
     font-weight:500;
     color:#333;
   }
@@ -187,7 +193,7 @@
     display: inline-block;
     width:90%;
     vertical-align: middle;
-    font-size: 13px;
+    font-size: 30rpx;
   }
   .rightEye{
     /*position: absolute;
@@ -195,6 +201,7 @@
     right:10px;
     bottom:16px;
     text-align: right;*/
+    color:#C8C8C8;
     display: flex;
     height:100%;
     align-items: center;
@@ -202,6 +209,22 @@
   .valIpt{
     font-size: 12px;
     color:#999;
+  }
+
+  .inline {
+    display: flex;
+    /*justify-content: space-between;*/
+    .van-cell-text{
+      min-width: 120rpx;
+      white-space:nowarp;
+      margin-right: 20rpx;
+      padding-top: 4rpx;
+    }
+    .inputWrap{
+      max-width: 600rpx;
+      width:60%;
+    }
+
   }
 </style>
 <style lang="scss">

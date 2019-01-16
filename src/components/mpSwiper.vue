@@ -19,10 +19,12 @@
         @change="swiperChange">
         <div  v-for="(item, index) in swiperData" :key="index">
           <swiper-item>
-            <div class="swiperCard" :class="swipeIndex == index ? 'active' : ''">
+            <div class="swiperCard"
+                 @click="goHome(item)"
+                 :class="swipeIndex == index ? 'active' : ''">
               <image :src="item.src" class="swiperImg"  />
               <div class="noInfo">水质未检测</div>
-              <div class="bottomInfo">
+              <div v-if="!swipeHome" class="bottomInfo">
                 <div class="title">杭州游泳馆</div>
                 <div class="toDayWrap">
                   <div class="nicetoDay">今日在岗： <span class="bigft"> 5</span>人</div>
@@ -44,6 +46,26 @@
                   </div>
                 </div>
               </div>
+              <div v-else class="bottomInfo">
+                <div class="title">杭州游泳馆</div>
+                <div class="toDayWrap">
+                  <div class="nicetoDay">
+                    水温 <span class="bigft"> 27</span></div>
+                  <div class="nicetoDay">
+                    PH值 <span class="bigft  redColor"> 5</span>人</div>
+                </div>
+                <div class="toDayWrap">
+                  <div class="nicetoDay">
+                    现场客户：<span class="bigft"> 5</span>人</div>
+                  <div class="nicetoDay">
+                    今日警报：<span class="bigft redColor"> 5</span>人</div>
+                </div>
+                <div class="toDayWrap waterBlock">
+                  <div class="nicetoDay">
+                    日平均换水率：<span class="bigft"> 100%</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </swiper-item>
         </div>
@@ -58,6 +80,10 @@
       swiperData: {
         type: Array,
         default: []
+      },
+      swipeHome: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -71,6 +97,15 @@
         this.swipeIndex = current
         // console.log(event.mp.detail)
         this.$emit('onchange', this.swipeIndex)
+      },
+      goHome (tm) {
+        if (!this.swipeHome) {
+          this.$router.push({
+            path: 'index/home',
+            query: {id: 1}
+          })
+        }
+        console.log(tm)
       },
       goStore () {
         this.$router.push({
@@ -149,6 +184,12 @@
       .title{
         font-size: 15px;
         padding-bottom: 18px;
+      }
+      .waterBlock{
+        margin-top: 6rpx;
+        .nicetoDay{
+          width:90%;
+        }
       }
       .nicetoDay{
         font-size: 12px;

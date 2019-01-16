@@ -55,10 +55,11 @@
     position: fixed;
     bottom:0px;
     width:100%;
+    height: 90rpx;
+    line-height: 90rpx;
     background: #fff;
-    padding:20px 0 30px 0;
-    text-align: left;
-    border-top:.5px solid #999;
+    justify-content: left;
+    box-shadow:0px 0px 10px 0px rgba(27,27,78,0.06);
     .rowS{
       text-align: left;
       margin-left: 20px;

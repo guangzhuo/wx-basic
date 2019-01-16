@@ -68,7 +68,7 @@
 
     <!--<div v-else>请升级微信版本</div>-->
     <van-toast id="van-toast" />
-    <div class="theme">
+    <div id="theme">
       <van-dialog id="van-dialog" />
     </div>
   </div>
@@ -139,10 +139,13 @@
         }).then(() => {
           // on close
         }) */
-        this.$router.push({
-          path: '/pages/index'
+        this.$router.replace({
+          path: '../home/index'
         })
-      // wx.setStorageSync('tonken', res.token)
+        /* wx.redirectTo({
+          url: '/pages/index'
+        }) */
+        // wx.setStorageSync('tonken', res.token)
         /* this.$fly.post(apis.login, {}).then(data => {
 
     }) */

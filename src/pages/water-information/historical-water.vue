@@ -1,57 +1,69 @@
 <template>
     <div class="historical-water">
       <mpSmallTitle title="杭州游泳馆·默认泳池" :rightNone="false"></mpSmallTitle>
-
-      <div class="historyinfo">
-        <ul class="info-ul">
-          <li class="info-list">
-            <span class="leftLabel">上报人</span>
-            <span class="rightInfo">Jim</span>
-          </li>
-          <li class="info-list">
-            <span class="leftLabel">上报时间</span>
-            <span class="rightInfo">2018-12-15 12:21:21</span>
-          </li>
-        </ul>
-      </div>
-
+      <mpCell disabled
+              leftTitle="上报人"
+              inline
+              :iconNone="false"
+              v-model="upName"
+              placeholder="27.3"
+              type="input">
+      </mpCell>
+      <mpCell disabled
+              leftTitle="上报时间"
+              :iconNone="false"
+              inline
+              v-model="upTime"
+              placeholder="27.3"
+              type="input">
+      </mpCell>
       <div class="mainBlock">
         <mpCell disabled
                 leftTitle="水温 (℃)"
                 :iconNone="false"
+                inline
                 placeholder="27.3"
                 type="input">
           <div slot="rightInfo">
             <div class="flexHin">
-              <div class="ft-info" v-html="ftInfo"></div>
+              <!--<div class="miniBtn max">偏高</div>-->
+              <!--<div class="miniBtn cent">适宜</div>-->
+              <div class="miniBtn min">适宜</div>
             </div>
           </div>
         </mpCell>
         <mpCell disabled
                 leftTitle="pH值"
+                inline
                 :iconNone="false"
                 placeholder="27.3"
                 type="input">
           <div slot="rightInfo">
             <div class="flexHin">
-              <div class="ft-info" v-html="ftInfo"></div>
             </div>
           </div>
         </mpCell>
         <mpCell disabled
                 leftTitle="日平均换水率 (%)"
+                inline
                 :iconNone="false"
                 placeholder="27.3"
                 type="input">
           <div slot="rightInfo">
             <div class="flexHin">
-              <div class="ft-info" v-html="ftInfo"></div>
             </div>
           </div>
         </mpCell>
+        <mpCell disabled
+                leftTitle="余氯 (mg/L)"
+                inline
+                :iconNone="false"
+                placeholder="27.3"
+                type="input">
+        </mpCell>
       </div>
 
-      <div class="mainBlock">
+      <!--<div class="mainBlock">
         <mpCell disabled
                 leftTitle="余氯 (mg/L)"
                 :iconNone="false"
@@ -70,7 +82,7 @@
                 placeholder="27.3"
                 type="input">
         </mpCell>
-      </div>
+      </div>-->
 
       <div class="mainBlock">
         <div class="imgInfo">照片信息</div>
@@ -93,18 +105,11 @@
       mpCell
     },
     computed: {
-      ftInfo () {
-        if (this.temperature > 50) {
-          return '<span style="color:red">11</span>'
-        } else if (this.temperature <= 10) {
-          return '<span style="color:green">11</span>'
-        } else {
-          return '<span style="color:rgb(119, 187, 234)">11</span>'
-        }
-      }
     },
     data () {
       return {
+        upName: '天田天田',
+        upTime: '2018-12-12 12:23:23',
         temperature: 0
       }
     },
@@ -135,12 +140,30 @@
     }
   }
   .mainBlock{
-    border-top: 3px solid rgba(0,0,0,.1)
+    border-top: 12rpx solid #F4F6F6;
   }
   .flexHin{
     display: flex;
     height:100%;
-    flex-direction: column-reverse;
+    align-items: center;
+    .miniBtn{
+      width: 60rpx;
+      height:30rpx;
+      text-align: center;
+      line-height: 30rpx;
+      color:#fff;
+      font-size: 20rpx;
+    }
+    .max{
+      background:linear-gradient(to right, #FF8A65, #FFBFBF);
+    }
+    .cent{
+      background:linear-gradient(to right, #32CCB9, #CFF6F9);
+    }
+    .min{
+      background:linear-gradient(to right, #56BAE8, #C2E6F8);
+    }
+
   }
   .imgInfo{
     font-size: 14px;

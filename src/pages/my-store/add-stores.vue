@@ -39,7 +39,10 @@
         @click="btnClick"></fxiedBtn>
 
       <van-notify id="custom-selector" />
-      <van-dialog id="van-dialog" />
+      <div id="theme">
+        <van-dialog id="van-dialog" />
+      </div>
+
     </div>
 </template>
 
@@ -80,7 +83,7 @@
       lifeClick () {
         this.$router.push({
           path: 'lifeguard-list',
-          query: {id: 2}
+          query: {back: 'add-stores'}
         })
       },
       /* 泳池信息 */

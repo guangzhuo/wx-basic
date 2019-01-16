@@ -10,7 +10,10 @@
                 type="input"/>
       <fixedBtn @click="newSite"
                 name="创建新场次" />
-      <van-dialog id="van-dialog" />
+      <div id="theme">
+        <van-dialog id="van-dialog" />
+      </div>
+
     </div>
 </template>
 

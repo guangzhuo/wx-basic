@@ -1,6 +1,6 @@
 <template>
     <div class="textarea">
-      <view class="van-cell-text">{{ text }}</view>
+      <!--<view class="van-cell-text">{{ text }}</view>-->
       <textarea class="hinIpt"
                 v-model.lazy="remarks"
                 :maxlength="max"
@@ -45,7 +45,10 @@
 <style lang="scss" scoped>
   .textarea{
     width:90%;
-    margin: 10px auto 0;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    padding: 20rpx;
     .van-cell-text{
       font-size: 13px;
       padding-bottom: 10px;
@@ -54,16 +57,17 @@
       width:100%;
       box-sizing: border-box;
       padding: 6px;
-      font-size: 12px;
+      font-size: 30rpx;
       border-radius: 3px;
-      border: 0.3px solid rgba(0,0,0,.1);
+      /*border: 0.3px solid rgba(0,0,0,.1);*/
       height:140px;
       line-height: 0;
     }
     .maxLength{
       display: inline-block;
       width:100%;
-      font-size: 13px;
+      color:#999;
+      font-size: 24rpx;
       text-align: right;
     }
   }
