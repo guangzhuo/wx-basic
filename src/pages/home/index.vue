@@ -17,7 +17,7 @@
       <li class="entran-list marginNone">
         <navigator
           hover-class="none"
-          url="all-functions/index">
+          url="../all-functions/index">
         <div class="imgIcon">
           <div class="crilered"></div>
         </div>
