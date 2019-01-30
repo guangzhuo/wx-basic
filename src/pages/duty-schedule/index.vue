@@ -129,8 +129,10 @@
   .lineMain{
     box-sizing: border-box;
     height:100%;
-    background: rgba(0,0,0,.1);
-    font-size: 13px;
+    background:rgba(239,124,27,.1);
+    font-size: 24rpx;
+    border-left: 1rpx solid #EF7C1B;
+    color:#333;
     padding: 6px;
   }
 }
@@ -144,7 +146,8 @@
         /*border-bottom:  3px solid black;*/
       }
       .van-tab--active{
-        background: rgba(0,0,0,.3);
+        background: #EF7C1B;
+        color:#fff;
       }
       .van-tabs__line{
         opacity: 0;
@@ -153,7 +156,7 @@
         width:70px;
         height:70px;
         padding:0 23px;
-        border: .5px solid rgba(0,0,0,.1);
+        border: 0.5rpx solid rgba(0,0,0,.1);
         line-height:24px;
         display:flex;
         align-items:center;

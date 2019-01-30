@@ -5,12 +5,16 @@
       <van-cell>
         <view slot="title">
           <div class="felxSpce">
-            <view class="van-cell-text">账号</view>
+            <view class="van-cell-text">
+              <image class="mobileIcon"
+                     mode="aspectFit"
+                     v-if="CDN_IMG"
+                     :src="CDN_IMG+'/mp-admin/login/mobile.png'"></image>
+            </view>
             <input v-model="phoneVal"
                    type="number"
                    class="ipt"
                    focus
-                   @input="inputClass"
                    placeholder="输入手机号码"  />
           </div>
         </view>
@@ -18,36 +22,51 @@
       <van-cell v-if="!isCode">
         <view slot="title">
           <div class="felxSpce">
-            <view class="van-cell-text">密码</view>
-
+            <view class="van-cell-text">
+              <image class="mobileIcon"
+                     mode="aspectFit"
+                     v-if="CDN_IMG"
+                     :src="CDN_IMG + '/mp-admin/login/pass.png'"></image>
+            </view>
             <input class="ipt"
                    v-model="passwordVal"
                    v-if="!isPassword"
                    type="password"
-                   @input="inputClass"
                    placeholder="输入登录密码"  />
             <input v-else
                    class="ipt"
                    v-model="passwordVal"
-                   @input="inputClass"
                    type="text"
                    placeholder="输入登录密码"  />
           </div>
           <div class="rightEye" @click="clickPassword">
-            <van-icon size="20px" v-if="!isPassword" name="closed-eye" />
-            <van-icon size="20px" v-else  name="eye" />
+            <div v-if="!isPassword">
+              <image class="eye"
+                     mode="aspectFit"
+                     v-if="CDN_IMG"
+                     :src="CDN_IMG + '/mp-admin/login/close-eys.png'"></image>
+            </div>
+            <div v-else>
+              <image class="eye"
+                     mode="aspectFit"
+                     v-if="CDN_IMG"
+                     :src="CDN_IMG + '/mp-admin/login/eye.png'"></image>
+            </div>
           </div>
         </view>
       </van-cell>
       <van-cell v-if="isCode">
         <view slot="title">
           <div class="felxSpce">
-            <view class="van-cell-text">短信验证码</view>
+            <view class="van-cell-text">
+              <image class="mobileIcon"
+                     mode="aspectFit"
+                     :src="CDN_IMG + '/mp-admin/login/code.png'"></image>
+            </view>
             <input class="ipt"
                    type="number"
                    v-model="messCode"
                    :focus="codeFocus"
-                   @input="inputClass"
                    placeholder="输入短信验证码" />
             <div class=" rightEye rightMessCode" @click="clickMessCode">
               {{messCodeInfo}}
@@ -94,6 +113,7 @@
     },
     data () {
       return {
+        CDN_IMG: this.CDN_IMG, // 图片cdn
         textval: '',
         val: '',
         phoneVal: '', // 手机号
@@ -101,12 +121,12 @@
         messCode: '', // 短信验证码
         mnus: 120, // 倒计时
         messCodeInfo: '短信验证码',
-        isInfo: '验证码登录？',
+        isInfo: '验证码登录',
         codeSet: null, // 倒计时实例
         isCode: false, // 是否短信
         codeFocus: false,
         isPassword: false,
-        activeBtn: false, // 按钮颜色
+        activeBtn: true, // 按钮颜色
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         list: ['scope.userInfo', 'scope.userLocation', 'scope.address', 'scope.invoiceTitle', 'scope.werun', 'scope.record', 'scope.writePhotosAlbum', 'scope.camera']
       }
@@ -116,6 +136,10 @@
     },
     onLoad () {
       let that = this
+    },
+    mounted () {
+      // console.log(process.env)
+      console.log(this.CDN_IMG)
     },
     methods: {
       ...mapMutations({
@@ -139,12 +163,12 @@
         }).then(() => {
           // on close
         }) */
-        this.$router.replace({
+        /* this.$router.replace({
           path: '../home/index'
-        })
-        /* wx.redirectTo({
-          url: '/pages/index'
         }) */
+        wx.reLaunch({
+          url: '../home/index'
+        })
         // wx.setStorageSync('tonken', res.token)
         /* this.$fly.post(apis.login, {}).then(data => {
 
@@ -154,18 +178,19 @@
       /* 短信验证码倒计时 */
       clickMessCode () {
         this.codeFocus = true
+        if (this.mnus !== 120) return false
         this.messCodeInfo = `${this.mnus}秒`
-        clearTimeout(this.codeSet)
-        this.codeSet = setTimeout(() => {
+        clearInterval(this.codeSet)
+        this.codeSet = setInterval(() => {
           --this.mnus
           this.messCodeInfo = `${this.mnus}秒`
           if (this.mnus === 0) {
             this.messCodeInfo = '短信验证码'
             this.mnus = 120
-            clearTimeout(this.codeSet)
+            clearInterval(this.codeSet)
             return false
           }
-          this.clickMessCode()
+          // this.clickMessCode()
         }, 1000)
       },
 
@@ -175,9 +200,8 @@
         if (this.isCode) {
           this.isInfo = '密码登录'
         } else {
-          this.isInfo = '验证码登录？'
+          this.isInfo = '验证码登录'
         }
-        this.inputClass()
       },
       inputClass () {
         this.activeBtn = this.activeBG()
@@ -257,9 +281,13 @@
   .rightEye{
     position: absolute;
     z-index: 2;
-    right:10px;
-    bottom:5px;
+    right:40rpx;
+    bottom:30rpx;
     text-align: right;
+    .eye{
+      width:30px;
+      height:25px;
+    }
   }
   .yecode{
     color:#666;
@@ -275,15 +303,22 @@
   .felxSpce{
     display: flex;
     justify-content: space-between;
-    padding:10px 0;
+    /*padding:10px 0;*/
     .van-cell-text{
       width:80px;
+      vertical-align: middle;
+      text-align: center;
+    }
+    .mobileIcon{
+      width:25px;
+      height:35px;
       vertical-align: middle;
     }
     .ipt{
       width: 90%;
       vertical-align: middle;
       font-size: 15px;
+      padding:12rpx 0;
     }
   }
 </style>

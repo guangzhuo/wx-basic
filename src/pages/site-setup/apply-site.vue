@@ -31,6 +31,11 @@
     },
     created () {
     },
+    onHide () {
+      this.result = []
+      this.leftname = '全选'
+      this.isCheckBox = false
+    },
     methods: {
       checkCall (obj) {
         console.log(obj)
@@ -49,17 +54,10 @@
       },
       isOK () {
         let {back} = this.$route.query
-        if (back === 'new-site') {
-          this.$router.push({
-            path: 'new-site',
-            query: {selectDuty: JSON.stringify(Array.from(this.allSelecth))}
-          })
-        } else {
-          this.$router.push({
-            path: 'site-info',
-            query: {selectDuty: JSON.stringify(Array.from(this.allSelecth))}
-          })
-        }
+        this.$router.push({
+          path: back,
+          query: {selectDuty: JSON.stringify(Array.from(this.allSelecth))}
+        })
       }
     }
   }

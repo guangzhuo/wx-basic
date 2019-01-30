@@ -13,7 +13,11 @@
             @change="movableChange"
             direction="all">
           <div class="imgIcon">
-            <div class="crilered" @click="click_delete"></div>
+            <image class="crilered"
+                   mode="aspectFit"
+                   @click="click_delete"
+                   v-if="CDN_IMG"
+                   :src="CDN_IMG+'/mp-admin/all_functions/delete.png'"></image>
           </div>
           <div class="imgTitle">我的门店{{ item.id }}</div>
         </div>
@@ -35,6 +39,7 @@
     },
     data () {
       return {
+        CDN_IMG: this.CDN_IMG,
         all_list: this.imgData, // 已经增加的列表
         current: -1,
         s_v: 35, // 垂直间隙

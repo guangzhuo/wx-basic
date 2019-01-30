@@ -3956,9 +3956,9 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
-mpvue-drag-sort@^1.0.2:
-  version "1.0.2"
-  resolved "http://registry.npm.taobao.org/mpvue-drag-sort/download/mpvue-drag-sort-1.0.2.tgz#763d7821415bb4d6489462e52ff10c74ddff7b9f"
+mpvue-calendar@^2.1.1:
+  version "2.1.1"
+  resolved "http://registry.npm.taobao.org/mpvue-calendar/download/mpvue-calendar-2.1.1.tgz#adf01e9779d0a9494657c0fa93643f89d84228a4"
 
 mpvue-entry@^2.0.0-rc.8:
   version "2.0.0-rc.8"

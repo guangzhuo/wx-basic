@@ -18,26 +18,7 @@
         </navigator>
       </li>
     </ul>
-    <div class="notify-info">
-      <van-cell :border="false">
-        <view slot="title">
-          <div class="notifyIcon">
-          </div>
-          <div class="Cell-conttainer">
-            <view class="textft van-cell-text">
-              <span class="corBor">预警</span> 杭州游泳馆有1条预警信息 <span class="bardinfo">12秒</span>
-            </view>
-            <div class="textft">
-              <span class="corBor">预警</span> 阿Q刚上岗打卡<span class="bardinfo">12秒</span>
-            </div>
-          </div>
-          <van-icon
-            slot="right-icon"
-            name="arrow"
-            class="van-cell__right-icon"/>
-        </view>
-      </van-cell>
-    </div>
+    <div class="linebg"></div>
     <mpSmallTitle
       :swiperInfo="true"
       title="门店泳池"
@@ -49,8 +30,6 @@
     <mpSwiper @onchange="touchChange"
               swipeHome
               :swiperData="swiperData"></mpSwiper>
-
-
   </div>
 </template>
 
@@ -164,41 +143,11 @@
       margin:0
     }
   }
-  .notify-info{
-    border-top: 8px solid #F4F6F6;
-    border-bottom: 8px solid #F4F6F6;
+  .linebg{
+    height: 16rpx;
+    width:100%;
+    background: #F4F6F6;
   }
-  .notifyIcon{
-    display: inline-block;
-    width: 34px;
-    height:40px;
-    background: gray;
-    vertical-align: middle;
-  }
-  .Cell-conttainer{
-    display: inline-block;
-    vertical-align: middle;
-    margin-left:10px;
-    .corBor{
-      border: .5px solid #EF7C1B;
-      color:#EF7C1B;
-      padding: 0px 3px;
-    }
-  }
-  .textft{
-    font-size: 12px;
-  }
-  .bardinfo{
-    padding-left: 6px;
-    color:#999;
-  }
-  .van-cell__right-icon{
-    position: absolute;
-    right:16px;
-    bottom:20px;
-  }
-
-
 </style>
 <style lang="scss">
   .APP_INDEX{

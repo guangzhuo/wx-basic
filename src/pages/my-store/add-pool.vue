@@ -1,13 +1,13 @@
 <template>
     <div class="Pool">
-      <mpCell required
+      <mpCell
               leftTitle="泳池名称"
               type="input"
               inline
               v-model.lazy="poolName"
               placeholder="输入泳池名称"
               :iconNone="false"></mpCell>
-      <mpCell required
+      <mpCell
               leftTitle="设备ID"
               type="input"
               inline

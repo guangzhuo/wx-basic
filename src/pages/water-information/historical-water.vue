@@ -1,7 +1,7 @@
 <template>
     <div class="historical-water">
       <mpSmallTitle title="杭州游泳馆·默认泳池" :rightNone="false"></mpSmallTitle>
-      <mpCell disabled
+      <mpCell
               leftTitle="上报人"
               inline
               :iconNone="false"
@@ -9,7 +9,7 @@
               placeholder="27.3"
               type="input">
       </mpCell>
-      <mpCell disabled
+      <mpCell
               leftTitle="上报时间"
               :iconNone="false"
               inline
@@ -18,71 +18,68 @@
               type="input">
       </mpCell>
       <div class="mainBlock">
-        <mpCell disabled
+        <mpCell :slot_main="false"
                 leftTitle="水温 (℃)"
                 :iconNone="false"
-                inline
-                placeholder="27.3"
-                type="input">
-          <div slot="rightInfo">
+                inline>
+          <div slot="slotMain">
             <div class="flexHin">
-              <!--<div class="miniBtn max">偏高</div>-->
+              <div class="argum">27.3</div>
+              <div class="miniBtn max">偏高</div>
               <!--<div class="miniBtn cent">适宜</div>-->
-              <div class="miniBtn min">适宜</div>
+              <!--<div class="miniBtn min">偏低</div>-->
             </div>
           </div>
+          <!--<div slot="rightInfo">
+
+          </div>-->
         </mpCell>
-        <mpCell disabled
+        <mpCell :slot_main="false"
                 leftTitle="pH值"
                 inline
-                :iconNone="false"
-                placeholder="27.3"
-                type="input">
-          <div slot="rightInfo">
+                :iconNone="false">
+          <div slot="slotMain">
             <div class="flexHin">
+              <div class="argum">27.3</div>
+              <!--<div class="miniBtn max">偏高</div>-->
+              <div class="miniBtn cent">适宜</div>
+              <!--<div class="miniBtn min">偏低</div>-->
             </div>
           </div>
         </mpCell>
-        <mpCell disabled
+        <mpCell :slot_main="false"
                 leftTitle="日平均换水率 (%)"
                 inline
-                :iconNone="false"
-                placeholder="27.3"
-                type="input">
-          <div slot="rightInfo">
+                :iconNone="false">
+          <div slot="slotMain">
             <div class="flexHin">
+              <div class="argum">27.3</div>
+              <!--<div class="miniBtn max">偏高</div>-->
+              <!--<div class="miniBtn cent">适宜</div>-->
+              <div class="miniBtn min">偏低</div>
             </div>
           </div>
         </mpCell>
-        <mpCell disabled
+        <mpCell
                 leftTitle="余氯 (mg/L)"
                 inline
                 :iconNone="false"
                 placeholder="27.3"
                 type="input">
         </mpCell>
-      </div>
-
-      <!--<div class="mainBlock">
-        <mpCell disabled
-                leftTitle="余氯 (mg/L)"
-                :iconNone="false"
-                placeholder="27.3"
-                type="input">
-        </mpCell>
-        <mpCell disabled
+        <mpCell inline
                 leftTitle="总氯 (mg/L)"
                 :iconNone="false"
                 placeholder="27.3"
                 type="input">
         </mpCell>
-        <mpCell disabled
+        <mpCell inline
                 leftTitle="水表读数 (m³)"
                 :iconNone="false"
                 placeholder="27.3"
-                type="input">
-        </mpCell>
-      </div>-->
+                type="input"></mpCell>
+      </div>
+
 
       <div class="mainBlock">
         <div class="imgInfo">照片信息</div>
@@ -146,6 +143,12 @@
     display: flex;
     height:100%;
     align-items: center;
+    margin-top: 6rpx;
+    .argum{
+      font-size: 30rpx;
+      color:#666;
+      padding-right: 8rpx;
+    }
     .miniBtn{
       width: 60rpx;
       height:30rpx;

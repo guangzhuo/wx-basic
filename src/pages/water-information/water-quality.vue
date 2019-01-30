@@ -8,7 +8,10 @@
         <view slot="title" class="left-alarm">
           <view class="van-cell-text">杭州游泳馆·默认泳池</view>
           <view class="alarm-time">
-            <image class="icon_time"></image>
+            <image class="icon_time"
+                   mode="aspectFit"
+                   v-if="CDN_IMG"
+                   :src="CDN_IMG+'/mp-admin/water-information/quality.png'"></image>
             最近上报时间：2018-12-15 12:12:28</view>
         </view>
         <view slot="right-icon">
@@ -33,7 +36,9 @@
       fixedBtn
     },
     data () {
-      return {}
+      return {
+        CDN_IMG: this.CDN_IMG
+      }
     },
     mounted () {
       console.log(this.$route.query)
@@ -77,15 +82,16 @@
     color:#969696
   }
   .alarm-time{
-    width:520rpx;
+    width:602rpx;
     color:#999;
     font-size: 28rpx;
     margin-top: 8rpx;
   }
   .icon_time{
-    width: 23rpx;
-    height:23rpx;
+    width: 23px;
+    height:23px;
     display: inline-block;
+    vertical-align: middle;
   }
   .right-btn{
     display: flex;

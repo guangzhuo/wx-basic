@@ -9,7 +9,7 @@
           :url="item.url"
           hover-class="none">
           <div class="imgIcon">
-            <div class="crilered"></div>
+            <!--<div class="crilered"></div>-->
           </div>
           <div class="imgTitle">{{ item.name }}</div>
         </navigator>
@@ -18,31 +18,44 @@
         <navigator
           hover-class="none"
           url="../all-functions/index">
-        <div class="imgIcon">
-          <div class="crilered"></div>
-        </div>
+        <image class="imgIcon"
+               mode="aspectFit"
+               v-if="CDN_IMG"
+               :src="CDN_IMG+'/mp-admin/home/more.png'">
+          <!--<div class="crilered"></div>-->
+        </image>
         <div class="imgTitle">更多功能</div>
         </navigator>
       </li>
     </ul>
     <div class="notify-info">
-      <van-cell :border="false">
+      <van-cell :border="false" @click="goNews">
         <view slot="title">
-          <div class="notifyIcon">
-          </div>
+          <image class="notifyIcon"
+                 mode="aspectFit"
+                 v-if="CDN_IMG"
+                 :src="CDN_IMG+'/mp-admin/home/new.png'">
+          </image>
           <div class="Cell-conttainer">
-            <view class="textft van-cell-text">
-              <span class="corBor">预警</span> 杭州游泳馆有1条预警信息 <span class="bardinfo">12秒</span>
-            </view>
+            <div class="textft van-cell-text">
+              <span class="corBor">预警</span>
+              <span class="maxEllp">杭州游泳馆有1条预警信息</span>
+              <span class="bardinfo">12秒</span>
+            </div>
             <div class="textft">
-              <span class="corBor">预警</span> 阿Q刚上岗打卡<span class="bardinfo">12秒</span>
+              <span class="corBor">预警</span>
+              <span class="maxEllp">阿Q刚上岗打卡</span>
+              <span class="bardinfo">12秒</span>
             </div>
           </div>
-          <van-icon
-            slot="right-icon"
-            name="arrow"
-            class="van-cell__right-icon"/>
         </view>
+        <div slot="right-icon" class="rightBlock">
+          <div class="lineCenter">
+            <van-icon
+              name="arrow"
+            />
+          </div>
+        </div>
       </van-cell>
     </div>
     <mpSmallTitle
@@ -51,11 +64,8 @@
       :border="false"
       :swiperAll="swiperAll"
       @click-right="click_right"></mpSmallTitle>
-
     <mpSwiper @onchange="touchChange"
               :swiperData="swiperData"></mpSwiper>
-
-
   </div>
 </template>
 
@@ -69,16 +79,23 @@ import { SET_OPEN_ID } from '../../store/mutation-types'
 export default {
   data () {
     return {
+      CDN_IMG: this.CDN_IMG,
       entrData: [
-        {url: '../my-store/index', name: '我的门店'},
-        {url: '../alarm-record/index', name: '警报记录'},
-        {url: '../water-information/index', name: '水质信息'},
-        {url: '../to-do-list/index', name: '待办事项'},
-        {url: '../attendance/index', name: '值班考勤'},
-        {url: '../duty-schedule/index', name: '值班计划'},
-        {url: '../site-setup/index', name: '场次设置'}
+        {url: '/pages/my-store/index', name: '我的门店'},
+        {url: '/pages/alarm-record/index', name: '警报记录'},
+        {url: '/pages/water-information/index', name: '水质信息'},
+        {url: '/pages/to-do-list/index', name: '待办事项'},
+        {url: '/pages/attendance/index', name: '值班考勤'},
+        {url: '/pages/duty-schedule/index', name: '值班计划'},
+        {url: '/pages/site-setup/index', name: '场次设置'},
+        {url: '/pages/ticketing/index', name: '票务管理'},
+        {url: '/pages/management/index', name: '经营信息'},
+        {url: '/pages/financial-statistics/index', name: '财务统计'},
+        {url: '/pages/lifeguard-management/index', name: '救生员管理'},
+        {url: '/pages/personal-center/index', name: '个人中心'},
+        {url: '/pages/my-duty/index', name: '我的值班'}
       ], // 管理入口列表
-      swiperData: [1, 2],
+      swiperData: [1],
       swipeIndex: 0, // 当前轮播索引
       swiperAll: 0 // 总轮播数
     }
@@ -103,12 +120,18 @@ export default {
     }),
     click_right () {
       this.$router.push({
-        path: 'my-store/index'
+        path: '../my-store/index'
       })
     },
     touchChange (thatIndex) {
       // console.log(thatIndex)
       this.swipeIndex = thatIndex + 1
+    },
+    /* 去消息页 */
+    goNews () {
+      this.$router.push({
+        path: '/pages/news/index'
+      })
     }
   },
 
@@ -125,7 +148,7 @@ export default {
 
 .entran-ul{
   display: flex;
-  padding: 20px 20px 0 20px;
+  padding:40rpx;
   /*justify-content: space-between;*/
   flex-wrap: wrap;
 
@@ -133,8 +156,8 @@ export default {
     width:65px;
     height:65px;
     text-align: center;
-    margin-right:25px;
-    margin-bottom:25px;
+    margin-right:50rpx;
+    margin-bottom:50rpx;
 
     .crilered{
       position: absolute;
@@ -155,7 +178,6 @@ export default {
       display: inline-block;
       position: relative;
       margin: 7px 0 5px 0;
-      background: darkgray;
       vertical-align: middle;
       display: inline-block;
     }
@@ -172,7 +194,6 @@ export default {
   display: inline-block;
   width: 34px;
   height:40px;
-  background: gray;
   vertical-align: middle;
 }
 .Cell-conttainer{
@@ -184,6 +205,14 @@ export default {
     color:#EF7C1B;
     padding: 0px 3px;
   }
+  .maxEllp{
+    display: inline-block;
+    max-width:280rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+  }
 }
   .textft{
     font-size: 12px;
@@ -191,6 +220,14 @@ export default {
   .bardinfo{
     padding-left: 6px;
     color:#999;
+  }
+  .rightBlock{
+    display: inline-block;
+    .lineCenter{
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
   }
   .van-cell__right-icon{
     position: absolute;

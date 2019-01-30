@@ -147,6 +147,7 @@
   .historyBtn{
     font-size: 28rpx;
     color:#999;
+    padding-top:32rpx;
     text-align: center;
     .vertical{
       vertical-align: middle;

@@ -14,24 +14,39 @@
           <van-cell class="cellList">
             <view class="noInfo">
               <div class="no_call">
-                <image class="iconImg"></image>未接警
+                <image class="iconImg"
+                       mode="aspectFit"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/alarm-record/alarm04.png'"></image>未接警
               </div>
               <div class="detail_info"  @click.stop="showDialog">
-                <image class="iconImg"></image>接警情况
+                <image class="iconImg"
+                       mode="aspectFit"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/alarm-record/alarm05.png'"></image>接警详情
               </div>
             </view>
             <view slot="title" class="left-alarm">
               <view class="van-cell-text">杭州游泳馆·默认泳池</view>
               <view class="month">
-                <image class="iconImg"></image>
+                <image class="iconImg"
+                       mode="aspectFit"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/alarm-record/alarm01.png'"></image>
                 五月
               </view>
               <view class="address">
-                <image class="iconImg"></image>
+                <image class="iconImg"
+                       mode="aspectFit"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/alarm-record/alarm02.png'"></image>
                 警报位置: 1号从网关
               </view>
               <view class="alarm-time">
-                <image class="iconImg"></image>
+                <image class="iconImg"
+                       mode="aspectFit"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/alarm-record/alarm03.png'"></image>
                 警报时间：2018-12-15 12:12:28
               </view>
             </view>
@@ -39,7 +54,10 @@
         </div>
         <div v-if="cardData.length===0" class="noCard">
           <div class="mainCenter">
-            <image class="noBG"></image>
+            <image class="noBG"
+                   mode="aspectFit"
+                   v-if="CDN_IMG"
+                   :src="CDN_IMG+'/mp-admin/common/default-list.png'"></image>
             <div class="noalarm">
               暂无报警记录
             </div>
@@ -91,7 +109,8 @@
     },
     data () {
       return {
-        cardData: [1, 2, 3, 4, 5],
+        CDN_IMG: this.CDN_IMG,
+        cardData: [1],
         allPool: '全部门店全部门店全部门店全部门店',
         AlarmRadio: '',
         infoDialog: false
@@ -134,11 +153,11 @@
     margin: 123rpx 0 123rpx;
   }
   .iconImg{
-    width:20rpx;
-    height:20rpx;
-    background: red;
+    width:23px;
+    height:23px;
     display: inline-block;
     margin-right: 19rpx;
+    vertical-align: middle;
   }
 .fiexdTop{
   position: fixed;
@@ -202,7 +221,6 @@
         display: block;
         width: 300rpx;
         height:300rpx;
-        background: gray;
         margin-top:290rpx;
       }
       .noalarm{
@@ -218,6 +236,7 @@
 }
 .bottomWrap{
   position: fixed;
+  z-index: 1;
   bottom:0px;
   width:100%;
   display:flex;

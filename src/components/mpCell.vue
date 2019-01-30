@@ -4,7 +4,7 @@
         <view slot="title">
           <view :class="inline===true? 'inline': ''">
             <view class="van-cell-text">{{leftTitle}}</view>
-            <div class="inputWrap">
+            <div class="inputWrap" v-if="slot_main">
               <image v-if="isSrcIcon" :src="srcIcon" class="iconWin"></image>
               <input v-if="type==='input'&& typeInput ==='text'"
                      :disabled="disabled"
@@ -39,6 +39,7 @@
                 </van-popup>
               </div>
             </div>
+            <slot name="slotMain"></slot>
           </view>
         </view>
         <view slot="right-icon">
@@ -58,6 +59,10 @@
       required: {
         type: Boolean,
         default: false
+      },
+      slot_main: {
+        type: Boolean,
+        default: true
       },
       srcIcon: {
         type: String,
@@ -222,7 +227,7 @@
     }
     .inputWrap{
       max-width: 600rpx;
-      width:60%;
+      width:66%;
     }
 
   }

@@ -167,6 +167,170 @@
       "config": {
         "navigationBarTitleText": "场次信息"
       }
+    },
+    {
+      "path": "pages/ticketing/index",
+      "config": {
+        "navigationBarTitleText": "票务管理"
+      }
+    },
+    {
+      "path": "pages/ticketing/add-ticket",
+      "config": {
+        "navigationBarTitleText": "添加新票"
+      }
+    },
+    {
+      "path": "pages/ticketing/add-scene-ticket",
+      "config": {
+        "navigationBarTitleText": "添加新场次票"
+      }
+    },
+    {
+      "path": "pages/ticketing/perfecting-business",
+      "config": {
+        "navigationBarTitleText": "完善经营信息"
+      }
+    },
+    {
+      "path": "pages/ticketing/new-timetick",
+      "config": {
+        "navigationBarTitleText": "添加新计时票"
+      }
+    },
+    {
+      "path": "pages/ticketing/charging-time",
+      "config": {
+        "navigationBarTitleText": "添加收费时段"
+      }
+    },
+    {
+      "path": "pages/ticketing/venues-list",
+      "config": {
+        "navigationBarTitleText": "选择适用场馆"
+      }
+    },
+    {
+      "path": "pages/ticketing/detail/tickets",
+      "config": {
+        "navigationBarTitleText": "票务信息"
+      }
+    },
+    {
+      "path": "pages/ticketing/detail/basic-info",
+      "config": {
+        "navigationBarTitleText": "基本信息"
+      }
+    },
+    {
+      "path": "pages/ticketing/detail/detailed-info",
+      "config": {
+        "navigationBarTitleText": "详细信息"
+      }
+    },
+    {
+      "path": "pages/ticketing/detail/basic-time-info",
+      "config": {
+        "navigationBarTitleText": "基本信息"
+      }
+    },
+    {
+      "path": "pages/management/index",
+      "config": {
+        "navigationBarTitleText": "门店经营信息"
+      }
+    },
+    {
+      "path": "pages/management/detail-manage",
+      "config": {
+        "navigationBarTitleText": "详细经营信息"
+      }
+    },
+    {
+      "path": "pages/management/business-hours",
+      "config": {
+        "navigationBarTitleText": "营业时间"
+      }
+    },
+    {
+      "path": "pages/financial-statistics/index",
+      "config": {
+        "navigationBarTitleText": "财务统计"
+      }
+    },
+    {
+      "path": "pages/financial-statistics/flow-details",
+      "config": {
+        "navigationBarTitleText": "流水明细"
+      }
+    },
+    {
+      "path": "pages/lifeguard-management/index",
+      "config": {
+        "navigationBarTitleText": "救生员管理"
+      }
+    },
+    {
+      "path": "pages/lifeguard-management/adding-lifeguards",
+      "config": {
+        "navigationBarTitleText": "添加救生员"
+      }
+    },
+    {
+      "path": "pages/lifeguard-management/superior",
+      "config": {
+        "navigationBarTitleText": "选择直属上级"
+      }
+    },
+    {
+      "path": "pages/lifeguard-management/lifeguard-information",
+      "config": {
+        "navigationBarTitleText": "救生员信息"
+      }
+    },
+    {
+      "path": "pages/news/index",
+      "config": {
+        "navigationBarTitleText": "消息"
+      }
+    },
+    {
+      "path": "pages/news/news-details",
+      "config": {
+        "navigationBarTitleText": "消息详情"
+      }
+    },
+    {
+      "path": "pages/personal-center/index",
+      "config": {
+        "navigationBarTitleText": "个人中心",
+        "navigationBarBackgroundColor": "#F8B33A",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/personal-center/personal-data",
+      "config": {
+        "navigationBarTitleText": "个人资料"
+      }
+    },
+    {
+      "path": "pages/personal-center/replacement-mobile",
+      "config": {
+        "navigationBarTitleText": "更换登录手机账号"
+      }
+    },
+    {
+      "path": "pages/personal-center/setting-password",
+      "config": {
+        "navigationBarTitleText": "设置登录密码"
+      }
+    },
+    {
+      "path": "pages/my-duty/index",
+      "config": {
+        "navigationBarTitleText": "我的值班"
+      }
     }
   ],
   "usingComponents": {
@@ -187,6 +351,7 @@
     "van-tag": "../static/vant/tag/index",
     "van-popup": "../static/vant/popup/index",
     "van-datetime-picker": "../static/vant/datetime-picker/index",
+    "van-area": "../static/vant/area/index",
     "van-checkbox": "../static/vant/checkbox/index",
     "van-checkbox-group": "../static/vant/checkbox-group/index",
     "van-swipe-cell": "../static/vant/swipe-cell/index"

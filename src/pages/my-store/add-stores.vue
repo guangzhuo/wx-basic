@@ -3,7 +3,6 @@
       <horCell required
                title="门店名称"
                v-model="storeName"
-               @input="valueCall"
                placeholder="输入门店名称"/>
       <horCell required
                disabled
@@ -11,7 +10,6 @@
                title="救生员"
                v-model="jsVal"
                @click="lifeClick"
-               @input="valueCall"
                placeholder="请选择救生员负责人"/>
       <div class="yc-info">
         <div class="yc-title">泳池信息</div>
@@ -28,21 +26,22 @@
           </mpCell>
           <navigator hover-class="none" url="add-pool">
             <div class="addYc">
-              <image src="" class="crileIcon"></image>添加泳池
+              <image src="" class="crileIcon"
+                     mode="aspectFit"
+                     v-if="CDN_IMG"
+                     :src="CDN_IMG+'/mp-admin/common/add.png'"></image>添加泳池
             </div>
           </navigator>
         </div>
       </div>
       <fxiedBtn
         name="确认添加"
-        :isActive="isActive"
         @click="btnClick"></fxiedBtn>
 
-      <van-notify id="custom-selector" />
+      <van-toast id="van-toast" />
       <div id="theme">
         <van-dialog id="van-dialog" />
       </div>
-
     </div>
 </template>
 
@@ -50,7 +49,7 @@
   import mpCell from '@/components/mpCell'
   import horCell from '@/components/horizontal-cell'
   import fxiedBtn from '@/components/fixed-btn'
-  import Notify from '@/../static/vant/notify/notify'
+  import Toast from '@/../static/vant/toast/toast'
   import Dialog from '@/../static/vant/dialog/dialog'
   import apis from '@/http/apis'
   export default {
@@ -62,6 +61,7 @@
     },
     data () {
       return {
+        CDN_IMG: this.CDN_IMG,
         storeName: '',
         jsVal: '',
         isActive: false
@@ -95,12 +95,7 @@
       },
       btnClick () {
         if (!this.storeName || !this.jsVal) {
-          Notify({
-            text: '请完善必填信息',
-            duration: 3000,
-            selector: '#custom-selector',
-            backgroundColor: '#1989fa'
-          })
+          Toast('请完善必填信息')
         } else {
           Dialog.confirm({
             title: '添加成功',
@@ -153,7 +148,6 @@
       width:30rpx;
       height:30rpx;
       border-radius: 50%;
-      background: darkgray;
       margin-right: 6rpx;
     }
   }
@@ -170,7 +164,7 @@
       color:#333;
       padding-top: 34rpx;
       margin: 0 auto;
-
+      color:#EF7C1B
     }
   }
 </style>

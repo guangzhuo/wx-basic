@@ -2,31 +2,36 @@
     <div class="Add-duty">
       <mpSmallTitle :rightNone="false" title="杭州游泳馆"></mpSmallTitle>
 
-      <mpCell required
+      <mpCell
               leftTitle="开始时间"
+              inline
               placeholder="请选择"
               v-model="startDate"
               iconName="arrow-down"
+              @input="activeCall"
               @confirmPicker="startpickerData"
               type="time"></mpCell>
-      <mpCell required
+      <mpCell
+              inline
               leftTitle="结束时间"
               placeholder="请选择"
               v-model="endDate"
               iconName="arrow-down"
+              @input="activeCall"
               @confirmPicker="endpickerData"
               type="time"></mpCell>
-      <div class="selectWrap">
-        <mpCell required
-                leftTitle="选择救生值班人员"
-                placeholder="请选择"
-                disabled
-                v-model="thatSelect"
-                iconName="arrow"
-                @click="goSelection"
-                @confirmPicker="pickerData"
-                type="input"></mpCell>
-      </div>
+      <mpCell
+        inline
+        leftTitle="选择救生值班人员"
+        placeholder="请选择"
+        disabled
+        v-model="thatSelect"
+        iconName="arrow"
+        @click="goSelection"
+        @input="activeCall"
+        @confirmPicker="pickerData"
+        type="input"></mpCell>
+
       <fixedBtn @click="save" name="保存"></fixedBtn>
       <van-notify id="custom-selector" />
       <div id="theme">
@@ -55,6 +60,7 @@
         startDate: '',
         endDate: '',
         thatSelect: '',
+        isActive: false,
         selectids: []
       }
     },
@@ -63,6 +69,8 @@
       if (selectDuty) {
         let arrDuty = JSON.parse(selectDuty)
         this.selectids = arrDuty.map(data => data.id)
+        this.thatSelect = ''
+        console.log(this.selectids)
         arrDuty.filter((data, index) => {
           this.thatSelect += data.name + '、'
         })
@@ -110,6 +118,11 @@
 
 <style lang="scss" scoped>
 .selectWrap{
-  border-top:10px solid rgba(0,0,0,.2);
+  /*border-top:10px solid rgba(0,0,0,.2);*/
 }
+</style>
+<style lang="scss">
+  page{
+    background: #F4F6F6;
+  }
 </style>

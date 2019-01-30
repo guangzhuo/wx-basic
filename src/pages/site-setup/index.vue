@@ -8,6 +8,16 @@
                 placeholder="周一至周日 8:00-10:00"
                 @click="goSiteInfo"
                 type="input"/>
+      <mpCell leftTitle="白天场"
+              disabled
+              placeholder="周一至周日 8:00-10:00"
+              @click="goSiteInfo"
+              type="input"/>
+      <mpCell leftTitle="晚场"
+              disabled
+              placeholder="周一至周日 8:00-10:00"
+              @click="goSiteInfo"
+              type="input"/>
       <fixedBtn @click="newSite"
                 name="创建新场次" />
       <div id="theme">
@@ -52,4 +62,9 @@
 
 <style lang="scss" scoped>
 
+</style>
+<style lang="scss">
+  page{
+    background: #F4F6F6;
+  }
 </style>

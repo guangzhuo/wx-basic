@@ -1,11 +1,11 @@
 <script>
 export default {
   created () {
+    let that = this
     // 调用API从本地缓存中获取数据
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     console.log('app created and cache logs by setStorageSync')
   }
 }
@@ -47,8 +47,15 @@ export default {
     .van-radio__icon--checked{
       color:#EF7C1B !important;
     }
+    .van-checkbox__icon--checked{
+      background:#EF7C1B !important;
+      border: 1rpx solid #EF7C1B;
+    }
     .van-icon{
       vertical-align: middle;
+    }
+    .van-cell{
+      padding: 32rpx 30rpx;
     }
   }
 

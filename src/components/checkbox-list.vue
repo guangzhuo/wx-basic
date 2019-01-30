@@ -86,3 +86,11 @@
 <style lang="scss" scoped>
 
 </style>
+<style lang="scss">
+  .checkbox-list {
+    .van-checkbox__icon--checked{
+      background: #EF7C1B;
+      border: 1rpx solid #EF7C1B;
+    }
+  }
+</style>

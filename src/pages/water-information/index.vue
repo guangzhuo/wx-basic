@@ -13,6 +13,10 @@
           </view>
           <view slot="right-icon">
             <div class="right-btn">
+              <image class="imgIcon"
+                     mode="aspectFit"
+                     v-if="CDN_IMG"
+                     :src="CDN_IMG+'/mp-admin/water-information/water01.png'"></image>
               <van-button  @click.stop="showDialog"
                            size="mini"
                            round
@@ -23,7 +27,10 @@
       </div>
       <div v-if="cardData.length===0" class="noCard">
         <div class="mainCenter">
-          <image class="noBG"></image>
+          <image class="noBG"
+                 mode="aspectFit"
+                 v-if="CDN_IMG"
+                 :src="CDN_IMG+'/mp-admin/common/default-list.png'"></image>
           <div class="noalarm">
             暂无报警记录
           </div>
@@ -44,14 +51,17 @@
               <li class="list_mini"
                   :key="index"
                   v-for="(item, index) in 3">
-              <div class="ti">
-                <image class="ti_icon"></image>
-                水温
-              </div>
-              <div class="ti_info">偏高</div>
-              <div class="number">27.8<span class="du">℃</span></div>
-              <div class="bz_info">标准：22-26℃</div>
-            </li>
+                <image class="imgIconBg"
+                       mode="aspectFit"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/water-information/water0'+(index +2)+'.png'"></image>
+                <div class="info-main">
+                  <div class="ti_info">偏高</div>
+                  <div class="number">27.8<span class="du">℃</span></div>
+                  <div class="bz_info">标准：22-26℃</div>
+                </div>
+
+              </li>
             </ul>
             <div class="upTiem">上报时间：2018-12-18 09:21:21</div>
           </div>
@@ -76,7 +86,8 @@
     },
     data () {
       return {
-        cardData: [1, 2, 3, 4, 5, 6],
+        CDN_IMG: this.CDN_IMG,
+        cardData: [1, 2],
         infoDialog: false,
         thatRadio: ''
       }
@@ -140,11 +151,12 @@
       transform: rotate3d(0,0,1,45deg);
     }
     .right-btn{
-      /*display: flex;
-      height: 100%;
-      flex-direction: column;
-      justify-content: center;*/
-
+      .imgIcon{
+        width:20px;
+        height:25px;
+        vertical-align: middle;
+        padding-right: 4rpx;
+      }
     }
     .left-alarm{
       width:220px;
@@ -166,6 +178,7 @@
   }
   .bottomWrap{
     position: fixed;
+    z-index: 1;
     bottom:0px;
     height:90rpx;
     width:100%;
@@ -183,7 +196,6 @@
         display: block;
         width: 300rpx;
         height:300rpx;
-        background: gray;
         margin-top:290rpx;
       }
       .noalarm{
@@ -238,6 +250,7 @@
         color:#fff;
         padding:21rpx;
         border-radius: 12rpx;
+        position: relative;
         .ti_icon{
           width:12rpx;
           height:24rpx;
@@ -260,6 +273,18 @@
           margin-bottom: 4rpx;
 
         }
+        .imgIconBg{
+          position: absolute;
+          width:216rpx;
+          height:240rpx;
+          top:0;
+          left:0;
+        }
+        .info-main{
+          position: absolute;
+          z-index: 2;
+          top:80rpx;
+        }
         .number{
           font-size: 60rpx;
           margin-bottom: 1rpx;
@@ -274,6 +299,7 @@
       .list_mini:nth-last-child(1){
         magrin-right:0 !important;
       }
+
     }
     .upTiem{
       text-align: center;

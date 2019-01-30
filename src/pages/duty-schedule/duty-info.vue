@@ -2,39 +2,38 @@
   <div class="Add-duty">
     <mpSmallTitle :rightNone="false" title="杭州游泳馆"></mpSmallTitle>
 
-    <mpCell required
+    <mpCell inline
             leftTitle="开始时间"
             placeholder="请选择"
             v-model="startDate"
             iconName="arrow-down"
             @confirmPicker="startpickerData"
             type="time"></mpCell>
-    <mpCell required
+    <mpCell inline
             leftTitle="结束时间"
             placeholder="请选择"
             v-model="endDate"
             iconName="arrow-down"
             @confirmPicker="endpickerData"
             type="time"></mpCell>
-    <div class="selectWrap">
-      <mpCell required
-              leftTitle="选择救生值班人员"
-              placeholder="请选择"
-              disabled
-              v-model="thatSelect"
-              iconName="arrow"
-              @click="goSelection"
-              @confirmPicker="pickerData"
-              type="input"></mpCell>
-    </div>
+    <mpCell inline
+            leftTitle="选择救生值班人员"
+            placeholder="请选择"
+            disabled
+            v-model="thatSelect"
+            iconName="arrow"
+            @click="goSelection"
+            @confirmPicker="pickerData"
+            type="input"></mpCell>
     <fixedBtn leftBtn
               @leftclick="deleteBtn"
               @click="save"
               name="保存"></fixedBtn>
     <van-notify id="custom-selector" />
-    <div id="theme">
+    <div id="red">
       <van-dialog id="van-dialog" />
     </div>
+    <van-toast id="van-toast" />
 
   </div>
 </template>
@@ -45,6 +44,7 @@
   import fixedBtn from '@/components/fixed-btn'
   import Notify from '@/../static/vant/notify/notify'
   import Dialog from '@/../static/vant/dialog/dialog'
+  import Toast from '@/../static/vant/toast/toast'
   import apis from '@/http/apis'
   export default {
     name: 'add-info',
@@ -94,7 +94,16 @@
         })
       },
       deleteBtn () {
+        Dialog.confirm({
+          message: '确认删除该值班信息？',
+          confirmButtonText: '确认删除'
+        }).then(() => {
+          // on confirm
+          Toast('删除成功')
+          // this.$fly.post(apis.api, {}).then(data => {})
+        }).then(() => {
 
+        })
       },
       save () {
         if (!this.startDate || !this.endDate || !this.thatSelect) {
@@ -124,5 +133,10 @@
 <style lang="scss" scoped>
   .selectWrap{
     border-top:10px solid rgba(0,0,0,.2);
+  }
+</style>
+<style lang="scss">
+  page{
+    background: #F4F6F6;
   }
 </style>

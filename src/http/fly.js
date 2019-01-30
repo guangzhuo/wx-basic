@@ -1,9 +1,9 @@
 /**
- * Created by 郑广卓.
+ * Created by GZ.
  */
 import Fly from 'flyio/dist/npm/wx'
 const fly = new Fly()
-fly.config.baseURL = '' // 请求的地址配置
+fly.config.baseURL = process.env.url // 请求的地址配置
 fly.config.timeout = 5000 // 超时时间
 
 fly.interceptors.request.use((request) => {
@@ -15,6 +15,10 @@ fly.interceptors.request.use((request) => {
       'X-Tag': 'flyio'
     }
     return request
+  } else {
+    wx.redirectTo({
+      url: '../pages/login/index'
+    })
   }
   /* else {
     fly.lock()// 锁住请求

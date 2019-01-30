@@ -2,7 +2,9 @@
     <div class="mpSwiper">
       <div class="noData" v-if="swiperData.length === 0">
         <div class="noSwiper">
-          <image src="" class="noswiperImg"  />
+          <image mode="aspectFit"
+                 :src="CDN_IMG+'/mp-admin/common/default-store.png'"
+                 class="noswiperImg"  />
           <!--<div class="noInfo">水质未检测</div>-->
           <div class="bottomInfo">
             <div class="title">尚未添加门店</div>
@@ -36,34 +38,46 @@
                 </div>
                 <div class="gohome">
                   <div class="listGo">
-                    <van-icon name="arrow"></van-icon>今日考勤
+                    <image class="cardImg"
+                           mode="aspectFit"
+                           v-if="CDN_IMG"
+                           :src="CDN_IMG+'/mp-admin/home/card01.png'">
+                    </image>今日考勤
                   </div>
                   <div class="listGo">
-                    <van-icon name="arrow"></van-icon>今日报警
+                    <image class="cardImg"
+                           mode="aspectFit"
+                           v-if="CDN_IMG"
+                           :src="CDN_IMG+'/mp-admin/home/card02.png'">
+                    </image>今日报警
                   </div>
                   <div class="listGo">
-                    <van-icon name="arrow"></van-icon>本月票务
+                    <image class="cardImg"
+                           mode="aspectFit"
+                           v-if="CDN_IMG"
+                           :src="CDN_IMG+'/mp-admin/home/card03.png'">
+                    </image>本月票务
                   </div>
                 </div>
               </div>
-              <div v-else class="bottomInfo">
+              <div v-else class="bottomInfo swipeHome">
                 <div class="title">杭州游泳馆</div>
                 <div class="toDayWrap">
                   <div class="nicetoDay">
-                    水温 <span class="bigft"> 27</span></div>
+                    水温 <span class="bigft redColor"> 27</span></div>
                   <div class="nicetoDay">
-                    PH值 <span class="bigft  redColor"> 5</span>人</div>
+                    PH值 <span class="bigft"> 5</span>人</div>
+                </div>
+                <div class="toDayWrap waterBlock">
+                  <div class="nicetoDay">
+                    日平均换水率：<span class="bigft redColor"> 100%</span>
+                  </div>
                 </div>
                 <div class="toDayWrap">
                   <div class="nicetoDay">
                     现场客户：<span class="bigft"> 5</span>人</div>
                   <div class="nicetoDay">
-                    今日警报：<span class="bigft redColor"> 5</span>人</div>
-                </div>
-                <div class="toDayWrap waterBlock">
-                  <div class="nicetoDay">
-                    日平均换水率：<span class="bigft"> 100%</span>
-                  </div>
+                    今日警报：<span class="bigft"> 5</span>人</div>
                 </div>
               </div>
             </div>
@@ -88,6 +102,7 @@
     },
     data () {
       return {
+        CDN_IMG: this.CDN_IMG,
         swipeIndex: 0 // 当前轮播索引
       }
     },
@@ -123,8 +138,8 @@
   .noSwiper{
     width:100%;
     .noswiperImg{
-      width:100px;
-      height: auto;
+      width:400px;
+      height: 214px;
       margin: 0 auto;
     }
     .title{
@@ -217,7 +232,20 @@
         display: flex;
         padding:0 20px;
         justify-content: space-between;
+        .cardImg{
+          width:23px;
+          height:21px;
+          margin-right: 6rpx;
+          margin-top:-2rpx;
+          vertical-align: middle;
+        }
       }
+    }
+  }
+  .swipeHome{
+    .bigft{
+      font-size: 40rpx;
+      color: #333;
     }
   }
 

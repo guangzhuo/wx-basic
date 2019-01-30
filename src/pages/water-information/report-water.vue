@@ -1,7 +1,7 @@
 <template>
   <div class="report-water">
     <mpSmallTitle title="杭州游泳馆·默认泳池" :rightNone="false"></mpSmallTitle>
-    <mpCell required
+    <mpCell
             leftTitle="水温 (℃)"
             :iconNone="false"
             inline
@@ -9,7 +9,7 @@
             v-model="waterTemp"
             type="input">
     </mpCell>
-    <mpCell required
+    <mpCell
             leftTitle="pH值"
             :iconNone="false"
             inline
@@ -17,7 +17,7 @@
             v-model="PH"
             type="input">
     </mpCell>
-    <mpCell required
+    <mpCell
             leftTitle="日平均换水率 (%)"
             :iconNone="false"
             inline
@@ -26,32 +26,29 @@
             type="input">
     </mpCell>
     <div class="mainBlock">
-      <van-cell required :border="false">
+      <van-cell :border="false">
         <view slot="title">
           <div class="imgInfo">上传照片 (最多6张，单张不超过5MB)</div>
         </view>
       </van-cell>
       <div class="listImg">
         <div class="images"
-             v-for="(item, idnex) in imagesArr"
+             v-for="(item, index) in imagesArr"
              :key="index"
               v-if="imagesArr.length>0">
           <image class="thatImg" :src="item.path"></image>
-          <div class="closeImg" @click="closeImg(item)">
-            <van-icon name="close" />
+          <div class="closeImg"  @click="closeImg(item)">
+            <image class="closeIcon"
+                   mode="aspectFit"
+                   v-if="CDN_IMG"
+                   :src="CDN_IMG+'/mp-admin/water-information/close.png'"></image>
           </div>
         </div>
-        <div class="inlineBlcok">
+        <div class="inlineBlcok" v-if="imagesArr.length<6">
           <div class="uploadWrap" @click="clickUpload">
             <van-icon name="plus" />
           </div>
         </div>
-
-        <!--<camera
-          device-position="back"
-          flash="auto"
-          style="width: 100%; height: 300px;"
-          binderror="error"></camera>-->
       </div>
     </div>
     <mpSmallTitle title="选填" :rightNone="false"></mpSmallTitle>
@@ -113,6 +110,7 @@
     },
     data () {
       return {
+        CDN_IMG: this.CDN_IMG,
         temperature: 0,
         waterTemp: '', // 水温
         PH: '',
@@ -277,6 +275,10 @@
         position: absolute;
         top:-16rpx;
         right:-16rpx;
+        .closeIcon{
+          width:36rpx;
+          height:36rpx;
+        }
       }
     }
   }

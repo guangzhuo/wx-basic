@@ -87,7 +87,7 @@
       display: inline-block;
       font-weight: 500;
       vertical-align: middle;
-      padding-left:10px;
+      /*padding-left:10px;*/
     }
     .swiperInfo{
       fonts-size: 12px;

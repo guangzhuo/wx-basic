@@ -9,12 +9,18 @@
             <van-cell class="storeCell" @click="cellclick">
               <view slot="title">
                 <div class="main">
-                  <image class="storeImg"></image>
+                  <image class="storeImg"
+                         mode="aspectFit"
+                         v-if="CDN_IMG"
+                         :src="CDN_IMG+'/mp-admin/my-store/default-none.png'"></image>
                   <div class="storeright">
                     <div class="storeTitle">杭州游泳馆
                     </div>
                     <dvi class="storeName">
-                      <image class="smllIcon"></image>田庚云</dvi>
+                      <image class="smllIcon"
+                             mode="aspectFit"
+                             v-if="CDN_IMG"
+                             :src="CDN_IMG+'/mp-admin/my-store/store01.png'"></image>田庚云</dvi>
                   </div>
                 </div>
               </view>
@@ -39,6 +45,7 @@
   import mpCell from '@/components/mpCell'
   import fxiedBtn from '@/components/fixed-btn'
   import apis from '@/http/apis'
+  const app = getApp()
   export default {
     name: 'index',
     components: {
@@ -47,6 +54,7 @@
     },
     data () {
       return {
+        CDN_IMG: this.CDN_IMG,
         placeholder: '啊Q'
       }
     },
@@ -96,9 +104,10 @@
         color:#999;
         font-size: 28rpx;
         .smllIcon{
-          width:19rpx;
-          height:24rpx;
+          width:19px;
+          height:24px;
           margin-right: 9rpx;
+          vertical-align: middle;
         }
       }
     }

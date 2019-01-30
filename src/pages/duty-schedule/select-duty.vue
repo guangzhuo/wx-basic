@@ -16,7 +16,7 @@
     },
     data () {
       return {
-
+        checkArr: []
       }
     },
     mounted () {
@@ -25,18 +25,19 @@
     methods: {
       checkCall (obj) {
         console.log(obj)
+        this.checkArr = obj
       },
       isOK () {
         let {goto} = this.$route.query
         if (goto === 'add-duty') {
           this.$router.push({
             path: 'add-duty',
-            query: {selectDuty: JSON.stringify(Array.from(this.allCheck))}
+            query: {selectDuty: JSON.stringify(Array.from(this.checkArr))}
           })
         } else {
           this.$router.push({
             path: 'duty-info',
-            query: {selectDuty: JSON.stringify(Array.from(this.allCheck))}
+            query: {selectDuty: JSON.stringify(Array.from(this.checkArr))}
           })
         }
       }
@@ -46,4 +47,9 @@
 
 <style lang="scss" scoped>
 
+</style>
+<style lang="scss">
+  page{
+    background: #F4F6F6;
+  }
 </style>

@@ -28,7 +28,10 @@
         </mpCell>
         <navigator hover-class="none" url="add-pool">
           <div class="addYc">
-            <!--<image src="" class="crileIcon"></image>-->添加泳池
+            <image src="" class="crileIcon"
+                   mode="aspectFit"
+                   v-if="CDN_IMG"
+                   :src="CDN_IMG+'/mp-admin/common/add.png'"></image>添加泳池
           </div>
         </navigator>
       </div>
@@ -59,6 +62,7 @@
     },
     data () {
       return {
+        CDN_IMG: this.CDN_IMG,
         poolName: '',
         poolID: '',
         storeName: '',
@@ -162,7 +166,6 @@
       width:30rpx;
       height:30rpx;
       border-radius: 50%;
-      background: darkgray;
       margin-right: 6rpx;
     }
   }
@@ -179,7 +182,7 @@
       color:#333;
       padding-top: 34rpx;
       margin: 0 auto;
-
+      color:#EF7C1B
     }
   }
 </style>

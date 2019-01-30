@@ -23,7 +23,9 @@
       <mpSmallTitle title="选填" :rightNone="false"></mpSmallTitle>
 
       <div class="markWrap">
-        <remarkText @areaVal="areaVal" max="100"></remarkText>
+        <remarkText @areaVal="areaVal"
+                    :isShow="isRemark"
+                    max="100"></remarkText>
       </div>
 
       <fixedBtn leftBtn
@@ -56,6 +58,7 @@
     },
     data () {
       return {
+        isRemark: true,
         nameTodo: '巡店检查',
         startDate: '2019-01-08 11:21',
         endDate: '2019-01-09 11:21'
@@ -76,13 +79,15 @@
         console.log(val)
       },
       deleteBtn () {
+        this.isRemark = false
         Dialog.confirm({
           // title: '确认删除？'
           message: '确认删除？'
         }).then(() => {
           Toast('删除成功')
+          this.isRemark = true
         }).catch(() => {
-
+          this.isRemark = true
         })
       },
       addBtn () {

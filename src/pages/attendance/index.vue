@@ -10,10 +10,17 @@
           <view slot="title">
             <div class="leftMain">
               <div class="le_title">
-                <images class="leftIcon"></images>阿Q
+                <image class="leftIcon"
+                        mode="aspectFit"
+                        v-if="CDN_IMG"
+                        :src="CDN_IMG+'/mp-admin/attendance/atten01.png'"></image>阿Q
               </div>
+
               <div class="two_title">
-                <images class="leftIcon"></images>杭州游泳馆
+                <image class="leftIcon"
+                        mode="aspectFit"
+                        v-if="CDN_IMG"
+                        :src="CDN_IMG+'/mp-admin/attendance/atten02.png'"></image>杭州游泳馆
               </div>
               <div class="small_title">排班时间：2018-12-15 11:00</div>
               <div class="small_title">打卡时间：2018-12-15 10:12:12</div>
@@ -21,10 +28,25 @@
           </view>
           <view slot="right-icon">
             <div class="right_Phone" @click="click_phone">
-              <van-icon name="phone" color="#EF7C1B" size="30rpx" />
-              <image class="time_info colorGreen" v-if="true">正常</image>
-              <image class="time_info colorRed" v-else-if="true">迟到</image>
-              <image class="time_info colorRed" v-else-if="true">缺勤</image>
+              <van-icon name="phone" color="#EF7C1B" size="30px" />
+              <div v-if="true">
+                <image class="time_info"
+                       mode="aspectFit"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/attendance/atten03.png'">正常</image>
+              </div>
+              <div v-else-if="true">
+                <image class="time_info"
+                       mode="aspectFit"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/attendance/atten04.png'">迟到</image>
+              </div>
+              <div v-else-if="true">
+                <image class="time_info"
+                       mode="aspectFit"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/attendance/atten03.png'">缺勤</image>
+              </div>
             </div>
           </view>
         </van-cell>
@@ -44,6 +66,7 @@
     },
     data () {
       return {
+        CDN_IMG: this.CDN_IMG,
         radioData: [{name: 21, text: '只看迟到/缺勤'}]
       }
     },
@@ -83,13 +106,13 @@
       padding-bottom: 16rpx;
     }
     .leftIcon{
-      width:23rpx;
-      height: 23rpx;
+      width:23px;
+      height: 23px;
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      background: darkgray;
       margin-right: 9rpx;
+      vertical-align: bottom;
     }
 
     .small_title{
@@ -107,9 +130,8 @@
       position: absolute;
       bottom: -35rpx;
       right:-46rpx;
-      width:176rpx;
-      height:176rpx;
-      background: darkgray;
+      width:146rpx;
+      height:146rpx;
     }
     .colorGreen{
       color:green;

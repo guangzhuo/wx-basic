@@ -44,7 +44,13 @@
               :class="(index+1)%4 ==0?'marginNone': ''"
               :key="index">
             <div class="imgIcon">
-              <div class="crilered" @click="click_delete(item)"></div>
+              <div class="add-icon" v-if="!isEdit">
+                <image class="crilered"
+                       mode="aspectFit"
+                       @click="click_add"
+                       v-if="CDN_IMG"
+                       :src="CDN_IMG+'/mp-admin/all_functions/add.png'"></image>
+              </div>
             </div>
             <div class="imgTitle">我的门店{{ item.id }}</div>
           </li>
@@ -63,6 +69,7 @@
     name: 'index',
     data () {
       return {
+        CDN_IMG: this.CDN_IMG,
         title_right: '编辑',
         isEdit: true,
         startMove: {
@@ -118,8 +125,9 @@
         this.isEdit = !this.isEdit
         this.title_right = this.isEdit ? '编辑' : '完成'
       },
-      click_delete (item) {
-        this.imgData.splice(this.imgData.findIndex(that => that.id === item.id), 1)
+      click_add (item) {
+        /* this.imgData.splice(this.imgData.findIndex(that => that.id === item.id), 1) */
+        this.imgData.push(item)
       }
     },
     components: {
@@ -218,4 +226,13 @@
   font-weight: 600;
   margin-left: 20px;
 }
+</style>
+<style lang="scss">
+  .All-functions{
+    .grayBg{
+      .van-cell{
+        background: #fff;
+      }
+    }
+  }
 </style>
