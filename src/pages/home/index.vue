@@ -6,11 +6,14 @@
           :class="(index+1)%4 ==0?'marginNone': ''"
           :key="index">
         <navigator
-          :url="item.url"
+          :url="item.pageUrl"
           hover-class="none">
-          <div class="imgIcon">
+          <image class="imgIcon"
+                 mode="aspectFit"
+                 v-if="CDN_IMG"
+                 :src="item.iconUrl">
             <!--<div class="crilered"></div>-->
-          </div>
+          </image>
           <div class="imgTitle">{{ item.name }}</div>
         </navigator>
       </li>
@@ -75,7 +78,7 @@ import mpSwiper from '@/components/mpSwiper'
 import mpSmallTitle from '@/components/mpSmallTitle'
 import { mapState, mapMutations } from 'vuex'
 import { SET_OPEN_ID } from '../../store/mutation-types'
-
+import apis from '@/http/apis'
 export default {
   data () {
     return {
@@ -101,23 +104,42 @@ export default {
     }
   },
   computed: {
-    ...mapState([
+    /* ...mapState([
       'openId'
-    ])
+    ]) */
   },
-  created () {
-
+  mounted () {
+    let that = this
+    wx.getStorage({
+      key: 'menuData',
+      success (res) {
+        console.log(res.data)
+      },
+      fail (res) {
+        that.menuData()
+      }
+    })
   },
   onLoad () {
     if (this.swiperData.length > 0) {
       this.swiperAll = this.swiperData.length
       this.swipeIndex = 1
     }
+    console.log(this.$store)
   },
   methods: {
-    ...mapMutations({
+    /* ...mapMutations({
       setOpenId: 'SET_OPEN_ID'
-    }),
+    }), */
+    /* 请求菜单接口 */
+    menuData () {
+      this.$fly.post(apis.menu, { 'uid': '1' }).then(data => {
+        console.log(data)
+        if (data.result.code === 200) {
+          this.entrData = data.result.data
+        }
+      })
+    },
     click_right () {
       this.$router.push({
         path: '../my-store/index'
@@ -203,7 +225,7 @@ export default {
   .corBor{
     border: .5px solid #EF7C1B;
     color:#EF7C1B;
-    padding: 0px 3px;
+    margin: 0px 3px;
   }
   .maxEllp{
     display: inline-block;

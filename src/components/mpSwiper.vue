@@ -116,7 +116,7 @@
       goHome (tm) {
         if (!this.swipeHome) {
           this.$router.push({
-            path: 'index/home',
+            path: '/pages/home/home',
             query: {id: 1}
           })
         }
@@ -124,7 +124,7 @@
       },
       goStore () {
         this.$router.push({
-          path: 'my-store/add-stores'
+          path: '/pages/my-store/add-stores'
         })
       }
     }

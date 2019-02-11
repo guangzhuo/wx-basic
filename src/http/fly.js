@@ -5,7 +5,14 @@ import Fly from 'flyio/dist/npm/wx'
 const fly = new Fly()
 fly.config.baseURL = process.env.url // 请求的地址配置
 fly.config.timeout = 5000 // 超时时间
-
+/* wx.setStorage({
+  key: 'tonken',
+  success (res) {
+    fly.config.headers = {
+      'Authorization': res.data
+    }
+  }
+}) */
 fly.interceptors.request.use((request) => {
   wx.showNavigationBarLoading()// 导航条加载动画
   if (wx.getStorageSync('token')) { // 检查本地缓存是否有token存在没有则重新获取
@@ -15,11 +22,12 @@ fly.interceptors.request.use((request) => {
       'X-Tag': 'flyio'
     }
     return request
-  } else {
-    wx.redirectTo({
-      url: '../pages/login/index'
-    })
   }
+  /* else {
+    wx.redirectTo({
+      url: '/pages/login/index'
+    })
+  } */
   /* else {
     fly.lock()// 锁住请求
     return app.Load().then(res => { // 重新获取token
@@ -43,27 +51,31 @@ fly.interceptors.request.use((request) => {
 
 fly.interceptors.response.use(
   (response) => {
+    console.log(response)
     wx.hideNavigationBarLoading()// 导航条加载动画
     const res = response.data
-    if (res.status === 0 && (res.errCode === 401 || res.errCode === 403)) {
-      // 跳转到登录页面
-      wx.redirectTo({
-        url: '跳首页地址'
+    let code = response.data.result.code
+
+    var p = getCurrentPages()
+    var route = p.pop().__route__
+    console.log(route)
+    if (code !== 200 && route !== 'pages/login/index') {
+      wx.navigateTo({
+        url: '/pages/login/index'
       })
     }
-
-    return response// 请求成功之后将返回值返回
+    return response.data// 请求成功之后将返回值返回
   },
   (err) => {
     // 请求出错，根据返回状态码判断出错原因
     console.log(err)
     wx.hideLoading()
-    if (err.status === 0) {
+    let code = err.data.data.result.code
+    if (code !== 200) {
+      wx.navigateTo({
+        url: '/pages/login/index'
+      })
       return '网络连接异常'
-    } else if (err.status === 1) {
-      return '网络连接超时'
-    } else if (err.status === 401) {
-      return '用户未登录'
     } else {
       if (err.response.data.message) {
         return err.response.data.message

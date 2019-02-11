@@ -1,7 +1,10 @@
 <template>
   <div class="login">
     <div class="bgWhite">
-      <div class="logo"></div>
+      <image class="logo"
+             mode="aspectFit"
+             v-if="CDN_IMG"
+             :src="CDN_IMG + '/mp-admin/login/logo.png'"></image>
       <van-cell>
         <view slot="title">
           <div class="felxSpce">
@@ -68,7 +71,7 @@
                    v-model="messCode"
                    :focus="codeFocus"
                    placeholder="输入短信验证码" />
-            <div class=" rightEye rightMessCode" @click="clickMessCode">
+            <div class="rightEye rightMessCode" @click="clickMessCode">
               {{messCodeInfo}}
             </div>
           </div>
@@ -79,7 +82,12 @@
       <span @click="clickCode"> {{ isInfo }}</span>
     </div>
     <div class="loginWrap">
-      <van-button  @click="logo" size="normal" block :class="activeBtn===true?'active':''" custom-class="loginBtn" >登录</van-button>
+      <van-button
+                  size="normal"
+                  @click="getuserinfo"
+                  block
+                  :class="activeBtn===true?'active':''"
+                  custom-class="loginBtn" >登录</van-button>
     </div>
     <!--<mpCell :required="true" v-model="val" @input="inputVal"></mpCell>-->
     <!--<cardWater ></cardWater>-->
@@ -95,14 +103,14 @@
 
 <script>
   import {mapState, mapMutations} from 'vuex'
-  import { SET_USERINFO } from '../../store/mutation-types'
+  import { SET_USERINFO, SET_OPEN_ID } from '../../store/mutation-types'
   import apis from '@/http/apis'
   import Toast from '@/../static/vant/toast/toast'
   import Dialog from '@/../static/vant/dialog/dialog'
-
   import mpselect from '@/components/mpDownSelect'
   import cardWater from '@/components/cardWater'
   import mpCell from '@/components/mpCell'
+  import {isMobile} from '@/utils/common'
 
   export default {
     name: 'list',
@@ -143,19 +151,47 @@
     },
     methods: {
       ...mapMutations({
-        'set_userinfo': SET_USERINFO
+        'set_userinfo': SET_USERINFO,
+        'SET_OPEN_ID': SET_OPEN_ID
       }),
       /* 显示密码 */
       clickPassword () {
         this.isPassword = !this.isPassword
       },
-
+      getuserinfo (data) {
+        wx.reLaunch({
+          url: '../home/index'
+        })
+        // this.set_userinfo(data.mp.detail.userInfo)
+        let jsonData = {
+          userName: this.phoneVal,
+          password: this.isCode ? '' : this.passwordVal
+          // code: this.isCode ? this.messCode : ''
+        }
+        if (!isMobile(this.phoneVal)) {
+          Toast('手机格式不正确')
+          return false
+        }
+        this.$fly.post(apis.login, jsonData).then(data => {
+          if (data.result.code === 200) {
+            let token = data.result.data.token
+            wx.setStorage({
+              key: 'token',
+              data: `Bearer ${token}`,
+              success (res) {
+                wx.reLaunch({
+                  url: '../home/index'
+                })
+              }
+            })
+          } else {
+            this.passwordVal = ''
+            Toast(data.result.message)
+          }
+        })
+      },
       /* 登录按钮 */
       logo () {
-        let jsonData = {
-          mobile: this.phone,
-          password: this.passwordVal
-        }
         // if (!this.activeBtn) return false
         /* Dialog.alert({
           message: '验证码错误',
@@ -166,13 +202,7 @@
         /* this.$router.replace({
           path: '../home/index'
         }) */
-        wx.reLaunch({
-          url: '../home/index'
-        })
-        // wx.setStorageSync('tonken', res.token)
-        /* this.$fly.post(apis.login, {}).then(data => {
-
-    }) */
+        //
       },
 
       /* 短信验证码倒计时 */
@@ -273,8 +303,7 @@
 .logo{
   width:60px;
   height:60px;
-  border: .5px solid #999;
-  background: gray;
+  display: block;
   margin: 30px auto;
   border-radius: 50%;
 }
@@ -297,7 +326,15 @@
   }
 
   .rightMessCode{
-    font-size: 12px;
+    font-size: 24rpx;
+    width:150rpx;
+    height:56rpx;
+    line-height: 56rpx;
+    text-align: center;
+    color:#fff;
+    background:rgba(239,124,27,1);
+    border-radius:8px;
+    bottom:44rpx;
   }
 
   .felxSpce{

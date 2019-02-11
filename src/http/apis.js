@@ -1,3 +1,5 @@
+const mp = '/mp'
 export default {
-  'login': '11'
+  'login': `${mp}/auth`, // 登录接口
+  'menu': `${mp}/menu/index/my` // 首页菜单接口
 }
